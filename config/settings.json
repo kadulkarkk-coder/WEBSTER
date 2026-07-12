@@ -1,0 +1,11 @@
+{
+    "app_name": "AURA",
+    "version": "0.0.1",
+    "theme": "light",
+    "debug": true,
+    "language": "en",
+    "window": {
+        "width": 1280,
+        "height": 720
+    }
+}
