@@ -46,3 +46,15 @@ AURA Started Successfully
 Version
 
 0.0.1
+---
+
+## Sprint 4
+
+### Completed
+
+- Created Configuration Manager
+- Added JSON configuration
+- Added dynamic settings loading
+- Implemented Settings class
+
+Status: Completed ✅
