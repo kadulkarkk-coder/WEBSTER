@@ -1,14 +1,7 @@
-from aura.config.settings import Settings
-from aura.utils.logger import Logger
-
-
 class Launcher:
-
-    def __init__(self):
-
-        self.settings = Settings()
-
-        self.logger = Logger()
+    def __init__(self, settings, logger):
+        self.settings = settings
+        self.logger = logger
 
     def start(self):
         self.logger.info("Starting AURA")

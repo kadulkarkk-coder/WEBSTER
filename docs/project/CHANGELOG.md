@@ -20,3 +20,10 @@ Added
 - Daily log files
 - Debug, Info, Warning, Error, Critical levels
 
+## Version 0.0.3
+
+Added
+
+- Custom exception system
+- Graceful startup recovery
+- Configuration validation

@@ -1,13 +1,13 @@
-from aura.core.launcher import Launcher
+from aura.app.application import Application
 
 
 def main():
 
     try:
 
-        launcher = Launcher()
+        app = Application()
 
-        launcher.start()
+        app.run()
 
     except Exception as e:
 
