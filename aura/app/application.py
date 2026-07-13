@@ -2,6 +2,8 @@ from aura.config.settings import Settings
 from aura.utils.logger import Logger
 from aura.core.launcher import Launcher
 from aura.services.service_manager import ServiceManager
+from aura.plugins.plugin_manager import PluginManager
+from aura.plugins.hello_plugin.plugin import HelloPlugin
 
 
 class Application:
@@ -23,6 +25,17 @@ class Application:
 
         self.services.register("launcher", launcher)
 
+        plugin_manager = PluginManager()
+
+        self.services.register(
+            "plugin_manager",
+            plugin_manager
+        )
+
+        plugin = HelloPlugin()
+
+        plugin_manager.register(plugin)
+
     def run(self):
 
         logger = self.services.get("logger")
@@ -35,6 +48,16 @@ class Application:
 
         for service in self.services.list_services():
             print("-", service)
+
+        print()
+
+        plugin_manager = self.services.get("plugin_manager")
+
+        print()
+        print("Loaded Plugins:")
+
+        for plugin in plugin_manager.list_plugins():
+            print(f"- {plugin.name} ({plugin.version})")
 
         print()
 
