@@ -11,3 +11,12 @@ Added
 - Logger
 - Settings
 - Documentation
+
+## Version 0.0.2
+
+### Added
+
+- Professional logging system
+- Daily log files
+- Debug, Info, Warning, Error, Critical levels
+

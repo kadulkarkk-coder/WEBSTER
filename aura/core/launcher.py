@@ -34,7 +34,10 @@ class Launcher:
 
         print("Starting AURA...")
 
-        self.logger.info("AURA Started")
+        self.logger.info("AURA Started Successfully")
+        self.logger.info("Configuration Loaded")
+        self.logger.debug("Debug Mode Enabled")
+        self.logger.warning("This is only a test warning.")
 
         print()
 
