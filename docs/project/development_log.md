@@ -155,3 +155,81 @@ Most future features—automation, vision, coding assistance, file management, a
 ## Next Sprint
 
 Sprint 13 – Interactive Navigation & Page System
+
+# Sprint 13 – Navigation Engine
+
+**Version:** v0.0.13
+
+**Status:** ✅ Completed
+
+---
+
+## Objectives Achieved
+
+- Implemented Navigation Manager.
+- Added dynamic page switching.
+- Created placeholder pages for Study Hub, Plugins, Memory, and Settings.
+- Established a single-window navigation architecture.
+- Prepared the application for modular expansion.
+
+---
+
+## Design Principle
+
+The sidebar remains permanent.
+
+Only the center workspace changes.
+
+This architecture mirrors modern desktop applications and keeps navigation consistent while allowing each module to evolve independently.
+
+---
+
+## Next Sprint
+
+Sprint 14 – Interactive Home Screen & AI Command Console
+
+# Sprint 14 – AURA Controller
+
+**Version:** v0.0.14
+
+**Status:** ✅ Completed
+
+---
+
+## Objective
+
+Introduce a central controller layer to decouple the user interface from application logic.
+
+---
+
+## Features Implemented
+
+- Added `AURAController` for centralized command handling.
+- Updated sidebar to communicate with the controller instead of the page manager.
+- Added a Home navigation button.
+- Improved the header with version information.
+- Expanded the status bar with service indicators.
+- Refined the home page placeholder content.
+
+---
+
+## Architecture
+
+User Input (Buttons / Voice / Gestures / Mini Assistant)
+
+↓
+
+AURAController
+
+↓
+
+Services & PageManager
+
+This establishes a single control path that future interfaces will reuse.
+
+---
+
+## Next Sprint
+
+Sprint 15 – Service Integration Layer
+

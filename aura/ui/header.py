@@ -25,7 +25,7 @@ class Header(ctk.CTkFrame):
 
             self,
 
-            text="Artificial Utilitarian Research Agent",
+            text="🤖 A.U.R.A. Artificial Utilitarian Research Agent Version 0.0.14",
 
             font=("Segoe UI", 12)
 

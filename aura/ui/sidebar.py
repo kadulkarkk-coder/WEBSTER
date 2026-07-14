@@ -1,13 +1,13 @@
 import customtkinter as ctk
 
-from aura import plugins
+from aura import controller, plugins
 from aura.ui import page_manager
 from aura.ui.pages import memory, settings
 
 
 class Sidebar(ctk.CTkFrame):
 
-    def __init__(self, master, page_manager):
+    def __init__(self, master, controller):
 
         super().__init__(master, width=220)
 
@@ -17,7 +17,7 @@ class Sidebar(ctk.CTkFrame):
             self,
             text="📚 Study Hub",
             height=45,
-            command=lambda: page_manager.show_page("study")
+            command=controller.open_study_hub
         )
 
         study.pack(fill="x", padx=15, pady=10)
@@ -27,7 +27,7 @@ class Sidebar(ctk.CTkFrame):
             self,
             text="🔌 Plugins",
             height=45,
-            command=lambda: page_manager.show_page("plugins")
+            command=controller.open_plugins
         )
 
         plugins.pack(fill="x", padx=15, pady=10)
@@ -37,7 +37,7 @@ class Sidebar(ctk.CTkFrame):
             self,
             text="🧠 Memory",
             height=45,
-            command=lambda: page_manager.show_page("memory")
+            command=controller.open_memory
         )
 
         memory.pack(fill="x", padx=15, pady=10)
@@ -47,7 +47,7 @@ class Sidebar(ctk.CTkFrame):
             self,
             text="⚙ Settings",
             height=45,
-            command=lambda: page_manager.show_page("settings")
+            command=controller.open_settings
         )
 
         settings.pack(fill="x", padx=15, pady=10)

@@ -71,4 +71,4 @@ class Home(ctk.CTkFrame):
 
         history.pack(pady=40)
 
-        history.insert("0.0", "Conversation history will appear here...")
+        history.insert("0.0", "Welcome to AURA. Your AI Operating System. Speak. Type. Navigate.")
