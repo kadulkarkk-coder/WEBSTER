@@ -113,3 +113,45 @@ Status: ✅ Completed
 - Demo plugin
 
 Status: Completed ✅
+
+# Sprint 12 – UI Layout Framework
+
+**Version:** v0.0.12
+
+**Status:** ✅ Completed
+
+---
+
+## Objectives Achieved
+
+- Implemented modular UI components.
+- Added reusable Header, Sidebar, Home, and StatusBar.
+- Established a grid-based application layout.
+- Introduced placeholder pages for future modules.
+- Prepared the UI for voice-first interaction.
+
+---
+
+## Components Added
+
+- Header
+- Sidebar
+- Home Screen
+- Status Bar
+- Layout Manager
+
+---
+
+## Design Philosophy
+
+The interface is intentionally minimal.
+
+AURA is designed to be **voice-first**, with visual navigation available for modules that benefit from manual interaction (Study Hub, Plugins, Memory, and Settings).
+
+Most future features—automation, vision, coding assistance, file management, and system control—will be accessed primarily through voice, text, or gestures rather than dedicated navigation pages.
+
+---
+
+## Next Sprint
+
+Sprint 13 – Interactive Navigation & Page System

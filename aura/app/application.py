@@ -4,7 +4,7 @@ from aura.core.launcher import Launcher
 from aura.services.service_manager import ServiceManager
 from aura.plugins.plugin_manager import PluginManager
 from aura.plugins.hello_plugin.plugin import HelloPlugin
-
+from aura.ui.main_window import MainWindow
 
 class Application:
 
@@ -43,6 +43,11 @@ class Application:
         logger.info("Application Starting")
 
         launcher = self.services.get("launcher")
+
+        launcher.start()
+
+        window = MainWindow()
+        window.mainloop()
 
         print("\nRegistered Services:")
 
