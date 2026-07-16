@@ -1,53 +1,105 @@
 import customtkinter as ctk
 
-from aura import controller, plugins
-from aura.ui import page_manager
-from aura.ui.pages import memory, settings
-
 
 class Sidebar(ctk.CTkFrame):
 
     def __init__(self, master, controller):
 
-        super().__init__(master, width=220)
-
-        self.grid_rowconfigure(10, weight=1)
-
-        study = ctk.CTkButton(
-            self,
-            text="📚 Study Hub",
-            height=45,
-            command=controller.open_study_hub
+        super().__init__(
+            master,
+            width=220,
+            corner_radius=0
         )
 
-        study.pack(fill="x", padx=15, pady=10)
+        self.controller = controller
 
+        self.grid_propagate(False)
 
-        plugins = ctk.CTkButton(
+        self.build()
+
+    # -------------------------------------
+
+    def build(self):
+
+        # Logo
+
+        logo = ctk.CTkLabel(
             self,
-            text="🔌 Plugins",
-            height=45,
-            command=controller.open_plugins
+            text="🤖 A.U.R.A.",
+            font=("Segoe UI", 26, "bold")
         )
 
-        plugins.pack(fill="x", padx=15, pady=10)
+        logo.pack(pady=(25, 5))
 
-
-        memory = ctk.CTkButton(
+        subtitle = ctk.CTkLabel(
             self,
-            text="🧠 Memory",
-            height=45,
-            command=controller.open_memory
+            text="Artificial Utilitarian\nResearch Agent",
+            font=("Segoe UI", 12)
         )
 
-        memory.pack(fill="x", padx=15, pady=10)
+        subtitle.pack(pady=(0, 25))
 
+        # -----------------------
+        # Navigation Buttons
+        # -----------------------
 
-        settings = ctk.CTkButton(
-            self,
-            text="⚙ Settings",
-            height=45,
-            command=controller.open_settings
+        self.chat_button = self.create_button(
+            "💬 Chat",
+            self.controller.go_chat
         )
 
-        settings.pack(fill="x", padx=15, pady=10)
+        self.study_button = self.create_button(
+            "📚 Study Hub",
+            self.controller.go_study
+        )
+
+        self.memory_button = self.create_button(
+            "🧠 Memory",
+            self.controller.go_memory
+        )
+
+        self.plugin_button = self.create_button(
+            "🔌 Plugins",
+            self.controller.go_plugins
+        )
+
+        self.settings_button = self.create_button(
+            "⚙ Settings",
+            self.controller.go_settings
+        )
+
+        # Push footer to bottom
+
+        spacer = ctk.CTkFrame(
+            self,
+            fg_color="transparent"
+        )
+
+        spacer.pack(expand=True, fill="both")
+
+        footer = ctk.CTkLabel(
+            self,
+            text="Version 0.0.17\nSprint 17.5",
+            font=("Segoe UI", 11)
+        )
+
+        footer.pack(pady=20)
+
+    # -------------------------------------
+
+    def create_button(self, text, command):
+
+        button = ctk.CTkButton(
+            self,
+            text=text,
+            height=45,
+            command=command
+        )
+
+        button.pack(
+            fill="x",
+            padx=15,
+            pady=6
+        )
+
+        return button

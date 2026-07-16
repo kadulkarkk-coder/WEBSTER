@@ -1,71 +1,131 @@
 from aura.config.settings import Settings
 from aura.utils.logger import Logger
 from aura.core.launcher import Launcher
+
 from aura.services.service_manager import ServiceManager
+
 from aura.plugins.plugin_manager import PluginManager
 from aura.plugins.hello_plugin.plugin import HelloPlugin
+
 from aura.ui.main_window import MainWindow
+
+from aura.services.ai_service import AIService
+from aura.services.memory_service import MemoryService
+from aura.services.study_service import StudyService
+from aura.services.voice_service import VoiceService
+from aura.services.vision_service import VisionService
+from aura.ai.chat_manager import ChatManager
+
 
 class Application:
 
     def __init__(self):
 
+        # -------------------------
+        # Core Managers
+        # -------------------------
+
         self.services = ServiceManager()
 
-        settings = Settings()
-        logger = Logger()
+        self.settings = Settings()
+        self.logger = Logger()
 
-        self.services.register("settings", settings)
-        self.services.register("logger", logger)
-
-        launcher = Launcher(
-            settings=settings,
-            logger=logger
+        self.launcher = Launcher(
+            settings=self.settings,
+            logger=self.logger
         )
 
-        self.services.register("launcher", launcher)
+        self.plugin_manager = PluginManager()
+        memory = MemoryService()
 
-        plugin_manager = PluginManager()
+        # -------------------------
+        # Register Core Services
+        # -------------------------
+
+        self.services.register("settings", self.settings)
+        self.services.register("logger", self.logger)
+        self.services.register("launcher", self.launcher)
+        self.services.register("plugin_manager", self.plugin_manager)
+        self.services.register("memory", memory)
+
+        # -------------------------
+        # Register Plugins
+        # -------------------------
+
+        hello = HelloPlugin()
+
+        self.plugin_manager.register(hello)
+
+        # -------------------------
+        # Create AURA Services
+        # -------------------------
+
+        self.ai = AIService()
+        self.study = StudyService()
+        self.voice = VoiceService()
+        self.vision = VisionService()
+
+        # -------------------------
+        # Register AURA Services
+        # -------------------------
+
+        self.services.register("ai", self.ai)
+        self.services.register("study", self.study)
+        self.services.register("voice", self.voice)
+        self.services.register("vision", self.vision)
+        self.chat = ChatManager()
 
         self.services.register(
-            "plugin_manager",
-            plugin_manager
+            "chat",
+            self.chat
         )
 
-        plugin = HelloPlugin()
+    def initialize_services(self):
 
-        plugin_manager.register(plugin)
+        self.logger.info("Initializing Services...")
+
+        for name in [
+            "ai",
+            "memory",
+            "study",
+            "voice",
+            "vision"
+        ]:
+
+            service = self.services.get(name)
+
+            service.initialize()
+
+        self.logger.info("All Services Initialized")
+
+    def print_summary(self):
+
+        print("\n========== AURA SUMMARY ==========\n")
+
+        print("Registered Services:")
+
+        for service in self.services.list_services():
+            print(f"  • {service}")
+
+        print("\nLoaded Plugins:")
+
+        for plugin in self.plugin_manager.list_plugins():
+            print(f"  • {plugin.name} ({plugin.version})")
+
+        print("\n==================================\n")
 
     def run(self):
 
-        logger = self.services.get("logger")
+        self.logger.info("Application Starting")
 
-        logger.info("Application Starting")
+        self.launcher.start()
 
-        launcher = self.services.get("launcher")
+        self.initialize_services()
 
-        launcher.start()
+        self.print_summary()
 
-        window = MainWindow()
+        window = MainWindow(self.services)
+
         window.mainloop()
 
-        print("\nRegistered Services:")
-
-        for service in self.services.list_services():
-            print("-", service)
-
-        print()
-
-        plugin_manager = self.services.get("plugin_manager")
-
-        print()
-        print("Loaded Plugins:")
-
-        for plugin in plugin_manager.list_plugins():
-            print(f"- {plugin.name} ({plugin.version})")
-
-        print()
-
-        launcher.start()
-
-        logger.info("Application Closed")
+        self.logger.info("Application Closed")
