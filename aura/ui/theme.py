@@ -1,13 +1,13 @@
 import customtkinter as ctk
 
 
-PRIMARY = "#00C8FF"
+PRIMARY = "#7B0303"
 
-BACKGROUND = "#1E1E1E"
+BACKGROUND = "#151515"
 
-SIDEBAR = "#252526"
+SIDEBAR = "#070707"
 
-CARD = "#2D2D30"
+CARD = "#000000"
 
 TEXT = "#FFFFFF"
 
@@ -16,4 +16,4 @@ def setup_theme():
 
     ctk.set_appearance_mode("dark")
 
-    ctk.set_default_color_theme("blue")
+    ctk.set_default_color_theme("cherry-red")

@@ -1,0 +1,5 @@
+{
+    "gemini": "",
+    "claude": "",
+    "openai": ""
+}

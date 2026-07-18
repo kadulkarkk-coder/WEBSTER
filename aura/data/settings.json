@@ -1,0 +1,9 @@
+{
+    "theme": "dark",
+    "provider": "dummy",
+    "voice": false,
+    "window": {
+        "width": 1280,
+        "height": 720
+    }
+}

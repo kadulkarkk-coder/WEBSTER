@@ -1,0 +1,29 @@
+{
+    "messages": [
+        {
+            "role": "user",
+            "content": "hey hi"
+        },
+        {
+            "role": "assistant",
+            "content": "Hello! I am AURA's Dummy Provider. You said: hey hi "
+        },
+        {
+            "role": "user",
+            "content": "how are you"
+        },
+        {
+            "role": "assistant",
+            "content": "Hello! I am AURA's Dummy Provider. You said: how are you "
+        },
+        {
+            "role": "user",
+            "content": "what is python"
+        },
+        {
+            "role": "assistant",
+            "content": "Hello! I am AURA's Dummy Provider. You said: what is python "
+        }
+    ],
+    "settings": {}
+}

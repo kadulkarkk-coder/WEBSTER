@@ -22,6 +22,6 @@ class Launcher:
 
         print()
 
-        self.logger.info("AURA Started Successfully")
+        self.logger.info("WEBSTER Started Successfully")
 
-        print("Welcome to AURA!")
+        print("Welcome to WEBSTER!")

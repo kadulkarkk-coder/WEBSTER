@@ -26,7 +26,7 @@ class MainWindow(ctk.CTk):
         # Window Configuration
         # -----------------------------
 
-        self.title("A.U.R.A.")
+        self.title("W.E.B.S.T.E.R.")
 
         self.geometry("1400x900")
 
@@ -56,6 +56,6 @@ class MainWindow(ctk.CTk):
 
     def on_close(self):
 
-        print("Closing AURA...")
+        print("Closing WEBSTER...")
 
         self.destroy()

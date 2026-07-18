@@ -1,0 +1,59 @@
+{
+    "conversation": {
+        "messages": [
+            {
+                "role": "user",
+                "content": "hey"
+            },
+            {
+                "role": "assistant",
+                "content": "Hello! I am AURA's Dummy Provider. You said: hey "
+            },
+            {
+                "role": "user",
+                "content": "what are youy"
+            },
+            {
+                "role": "assistant",
+                "content": "Hello! I am AURA's Dummy Provider. You said: what are youy "
+            },
+            {
+                "role": "user",
+                "content": "hi aura"
+            },
+            {
+                "role": "user",
+                "content": "u"
+            },
+            {
+                "role": "user",
+                "content": "hey"
+            },
+            {
+                "role": "user",
+                "content": "hey"
+            }
+        ]
+    },
+    "profile": {
+        "name": "",
+        "nickname": "",
+        "age": null,
+        "grade": "",
+        "school": "",
+        "location": "",
+        "interests": [],
+        "skills": [],
+        "goals": [],
+        "facts": {}
+    },
+    "settings": {
+        "theme": "dark",
+        "provider": "dummy",
+        "voice": false,
+        "window": {
+            "width": 1280,
+            "height": 720
+        }
+    }
+}

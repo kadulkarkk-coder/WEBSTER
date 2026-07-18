@@ -4,19 +4,68 @@ class AIEngine:
 
         self.provider = None
 
-    def set_provider(self, provider):
+    # ==================================================
+    # Provider
+    # ==================================================
+
+    def set_provider(
+        self,
+        provider
+    ):
 
         self.provider = provider
 
         self.provider.initialize()
 
-    def ask(self, prompt):
+    # ==================================================
+    # Standard Response
+    # ==================================================
+
+    def ask(
+        self,
+        context
+    ):
 
         if self.provider is None:
 
             return "No AI Provider Selected."
 
-        return self.provider.generate(prompt)
+        return self.provider.generate(
+            context
+        )
+
+    # ==================================================
+    # Streaming Response
+    # ==================================================
+
+    def stream(
+        self,
+        context
+    ):
+
+        if self.provider is None:
+
+            yield "No AI Provider Selected."
+
+            return
+
+        if hasattr(
+            self.provider,
+            "stream"
+        ):
+
+            yield from self.provider.stream(
+                context
+            )
+
+        else:
+
+            yield self.provider.generate(
+                context
+            )
+    # ==================================================
+    # Info
+    # ==================================================
 
     def get_provider(self):
 

@@ -15,7 +15,7 @@ class UserProfile:
 
         "theme": "dark",
 
-        "accent_color": "cyan",
+        "accent_color": "black",
 
         "language": "en",
 

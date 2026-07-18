@@ -25,7 +25,7 @@ class Sidebar(ctk.CTkFrame):
 
         logo = ctk.CTkLabel(
             self,
-            text="🤖 A.U.R.A.",
+            text="WEBSTER",
             font=("Segoe UI", 26, "bold")
         )
 
@@ -33,7 +33,7 @@ class Sidebar(ctk.CTkFrame):
 
         subtitle = ctk.CTkLabel(
             self,
-            text="Artificial Utilitarian\nResearch Agent",
+            text="Whatever Every Brilliant \nSystem Truly Executes... Reliably.",
             font=("Segoe UI", 12)
         )
 
@@ -44,22 +44,22 @@ class Sidebar(ctk.CTkFrame):
         # -----------------------
 
         self.chat_button = self.create_button(
-            "💬 Chat",
+            "💬 Talk to Webster",
             self.controller.go_chat
         )
 
         self.study_button = self.create_button(
-            "📚 Study Hub",
+            "📚 Study-tingle",
             self.controller.go_study
         )
 
         self.memory_button = self.create_button(
-            "🧠 Memory",
+            "🧠 Who is Peter?",
             self.controller.go_memory
         )
 
         self.plugin_button = self.create_button(
-            "🔌 Plugins",
+            "🔌 Extra Webs",
             self.controller.go_plugins
         )
 
@@ -79,7 +79,7 @@ class Sidebar(ctk.CTkFrame):
 
         footer = ctk.CTkLabel(
             self,
-            text="Version 0.0.17\nSprint 17.5",
+            text="Version 0.0.21",
             font=("Segoe UI", 11)
         )
 

@@ -24,7 +24,7 @@ class OrbController:
 
         "thinking": {
             "emoji": "🟣",
-            "text": "AURA is thinking..."
+            "text": "WEBSTER is thinking..."
         },
 
         "speaking": {

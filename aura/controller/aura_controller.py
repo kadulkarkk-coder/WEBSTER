@@ -1,172 +1,284 @@
+from aura.utils.debug import Debug
+
+
 class AURAController:
 
-    def __init__(self, page_manager, services):
+    # ==================================================
+    # Constructor
+    # ==================================================
+
+    def __init__(
+        self,
+        page_manager,
+        services
+    ):
 
         self.page_manager = page_manager
         self.services = services
 
-        print("=" * 50)
-        print("AURA Controller Initialized")
-        print("Registered Services:")
-
-        for service in self.services.list_services():
-            print(f" • {service}")
-
-        print("=" * 50)
+        Debug.log(
+            "Controller",
+            "Initialized"
+        )
 
     # ==================================================
     # Service Access
     # ==================================================
 
-    def get_service(self, name):
+    def get_service(
+        self,
+        name
+    ):
 
-        return self.services.get(name)
+        return self.services.get(
+            name
+        )
+
+    # ==================================================
+    # Status
+    # ==================================================
+
+    def get_status(self):
+
+        status = self.get_service(
+            "status_manager"
+        )
+
+        if status is None:
+
+            return "Ready"
+
+        return status.get_emoji()["text"]
 
     # ==================================================
     # Navigation
     # ==================================================
 
+    def show_page(
+        self,
+        page
+    ):
+
+        self.page_manager.show_page(
+            page
+        )
+
     def go_chat(self):
 
-        self.page_manager.show_page("chat")
-
-    # --------------------------------------------------
+        self.show_page(
+            "chat"
+        )
 
     def go_study(self):
 
-        self.page_manager.show_page("study")
-
-    # --------------------------------------------------
+        self.show_page(
+            "study"
+        )
 
     def go_plugins(self):
 
-        self.page_manager.show_page("plugins")
-
-    # --------------------------------------------------
+        self.show_page(
+            "plugins"
+        )
 
     def go_memory(self):
 
-        self.page_manager.show_page("memory")
-
-    # --------------------------------------------------
+        self.show_page(
+            "memory"
+        )
 
     def go_settings(self):
 
-        self.page_manager.show_page("settings")
+        self.show_page(
+            "settings"
+        )
 
     # ==================================================
-    # Chat
+    # Streaming Chat
     # ==================================================
 
-    def send_message(self, prompt):
+    def stream_message(
+        self,
+        prompt
+    ):
+
+        """
+        Generator used by AIWorker.
+        """
 
         prompt = prompt.strip()
 
         if not prompt:
-            return ""
 
-        ai = self.get_service("ai")
-        memory = self.get_service("memory")
+            return
 
-        if ai is None:
-            return "[ERROR] AI Service not found."
+        memory = self.get_service(
+            "memory"
+        )
 
-        if memory is None:
-            return "[ERROR] Memory Service not found."
+        context_builder = self.get_service(
+            "conversation_context"
+        )
 
-        # ----------------------------------------------
-        # Store User Message
-        # ----------------------------------------------
+        ai = self.get_service(
+            "ai"
+        )
 
-        memory.add_user(prompt)
+        status = self.get_service(
+            "status_manager"
+        )
 
-        # ----------------------------------------------
-        # Generate AI Response
-        # ----------------------------------------------
+        if status:
 
-        try:
+            status.thinking()
 
-            response = ai.ask(prompt)
+        # ==================================================
+        # Save User Message
+        # ==================================================
 
-        except Exception as e:
+        memory.add_user(
+            prompt
+        )
 
-            response = f"[AI ERROR] {e}"
+        # ==================================================
+        # Build Context
+        # ==================================================
 
-        # ----------------------------------------------
-        # Store Assistant Response
-        # ----------------------------------------------
+        context = context_builder.build(
 
-        memory.add_assistant(response)
+            memory,
 
-        return response
+            prompt
 
+        )
+
+        Debug.log(
+
+        "Context",
+
+            context
+
+        )
+
+        Debug.log(
+
+            "AI",
+
+            "Streaming response..."
+
+        )
+
+        # ==================================================
+        # Stream Response
+        # ==================================================
+
+        response = ""
+
+        for chunk in ai.stream(
+            context
+        ):
+
+            response += chunk
+
+            yield chunk
+
+        # ==================================================
+        # Save Assistant Response
+        # ==================================================
+
+        memory.add_assistant(
+            response
+        )
+
+        if status:
+
+            status.idle()
+
+        Debug.log(
+
+               "Controller",
+
+        "Streaming complete"
+
+        )
     # ==================================================
     # Memory
     # ==================================================
 
-    def clear_chat(self):
+    def clear_memory(self):
 
-        memory = self.get_service("memory")
+        memory = self.get_service(
+            "memory"
+        )
 
-        if memory:
+        if memory is None:
 
-            memory.clear_chat()
+            return
+
+        memory.clear_chat()
+
+        Debug.log(
+            "Controller",
+            "Memory cleared"
+        )
 
     # --------------------------------------------------
 
     def export_chat(self):
 
-        memory = self.get_service("memory")
+        memory = self.get_service(
+            "memory"
+        )
 
-        if memory:
+        if memory is None:
 
-            return memory.export_chat()
+            return ""
 
-        return ""
+        return memory.export_chat()
 
     # ==================================================
-    # Profile
+    # Settings
     # ==================================================
 
-    def get_setting(self, key, default=None):
+    def get_setting(
+        self,
+        key,
+        default=None
+    ):
 
-        memory = self.get_service("memory")
+        memory = self.get_service(
+            "memory"
+        )
 
-        if memory:
+        if memory is None:
 
-            return memory.get_setting(
-                key,
-                default
-            )
+            return default
 
-        return default
+        return memory.get_setting(
+            key,
+            default
+        )
 
     # --------------------------------------------------
 
-    def set_setting(self, key, value):
+    def set_setting(
+        self,
+        key,
+        value
+    ):
 
-        memory = self.get_service("memory")
+        memory = self.get_service(
+            "memory"
+        )
 
-        if memory:
+        if memory is None:
 
-            memory.set_setting(
-                key,
-                value
-            )
+            return
 
-    # ==================================================
-    # AI
-    # ==================================================
-
-    def ask_ai(self, prompt):
-
-        ai = self.get_service("ai")
-
-        if ai:
-
-            return ai.ask(prompt)
-
-        return "[ERROR] AI Service unavailable."
+        memory.set_setting(
+            key,
+            value
+        )
 
     # ==================================================
     # Shutdown
@@ -174,10 +286,20 @@ class AURAController:
 
     def shutdown(self):
 
-        memory = self.get_service("memory")
+        Debug.log(
+            "Controller",
+            "Saving memory..."
+        )
+
+        memory = self.get_service(
+            "memory"
+        )
 
         if memory:
 
             memory.save()
 
-        print("AURA Controller Shutdown Complete")
+        Debug.log(
+            "Controller",
+            "Shutdown complete"
+        )
