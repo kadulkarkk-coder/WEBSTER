@@ -13,7 +13,7 @@ class Header(ctk.CTkFrame):
 
             self,
 
-            text="A.U.R.A.",
+            text="WEBSTER",
 
             font=("Segoe UI", 28, "bold")
 
@@ -25,7 +25,7 @@ class Header(ctk.CTkFrame):
 
             self,
 
-            text="🤖 A.U.R.A. Artificial Utilitarian Research Agent Version 0.0.14",
+            text="🕷️\nWhatever Every System Executes Reliably",
 
             font=("Segoe UI", 12)
 

@@ -1,16 +1,32 @@
+from aura.ai.conversation_context import ConversationContext
+
+
 class AIEngine:
 
-    def __init__(self):
+    # ==================================================
+    # Constructor
+    # ==================================================
 
-        self.provider = None
+    def __init__(
+
+        self
+
+    ):
+
+        self.provider = "gemini"
+
+        self.context = ConversationContext()
 
     # ==================================================
     # Provider
     # ==================================================
 
     def set_provider(
+
         self,
+
         provider
+
     ):
 
         self.provider = provider
@@ -22,16 +38,31 @@ class AIEngine:
     # ==================================================
 
     def ask(
+
         self,
-        context
+
+        memory,
+
+        prompt
+
     ):
 
         if self.provider is None:
 
             return "No AI Provider Selected."
 
+        final_prompt = self.context.build(
+
+            memory,
+
+            prompt
+
+        )
+
         return self.provider.generate(
-            context
+
+            final_prompt
+
         )
 
     # ==================================================
@@ -39,8 +70,13 @@ class AIEngine:
     # ==================================================
 
     def stream(
+
         self,
-        context
+
+        memory,
+
+        prompt
+
     ):
 
         if self.provider is None:
@@ -49,29 +85,51 @@ class AIEngine:
 
             return
 
-        if hasattr(
-            self.provider,
-            "stream"
-        ):
+        final_prompt = self.context.build(
 
-            yield from self.provider.stream(
-                context
-            )
+            memory,
 
-        else:
+            prompt
 
-            yield self.provider.generate(
-                context
-            )
+        )
+
+        yield from self.provider.stream(
+
+            final_prompt
+
+        )
+
     # ==================================================
-    # Info
+    # Context
     # ==================================================
 
-    def get_provider(self):
+    def get_context(
+
+        self
+
+    ):
+
+        return self.context
+
+    # ==================================================
+    # Provider
+    # ==================================================
+
+    def get_provider(
+
+        self
+
+    ):
 
         return self.provider
 
-    def get_provider_name(self):
+    # --------------------------------------------------
+
+    def get_provider_name(
+
+        self
+
+    ):
 
         if self.provider:
 

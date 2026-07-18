@@ -8,17 +8,37 @@ class AURAController:
     # ==================================================
 
     def __init__(
+
         self,
+
         page_manager,
+
         services
+
     ):
 
         self.page_manager = page_manager
+
         self.services = services
 
+        self.memory = self.services.get(
+
+            "memory"
+
+        )
+
+        self.ai = self.services.get(
+
+            "ai"
+
+        )
+
         Debug.log(
+
             "Controller",
+
             "Initialized"
+
         )
 
     # ==================================================
@@ -48,7 +68,7 @@ class AURAController:
 
             return "Ready"
 
-        return status.get_emoji()["text"]
+        return status.get_text()
 
     # ==================================================
     # Navigation
@@ -116,10 +136,6 @@ class AURAController:
             "memory"
         )
 
-        context_builder = self.get_service(
-            "conversation_context"
-        )
-
         ai = self.get_service(
             "ai"
         )
@@ -140,26 +156,6 @@ class AURAController:
             prompt
         )
 
-        # ==================================================
-        # Build Context
-        # ==================================================
-
-        context = context_builder.build(
-
-            memory,
-
-            prompt
-
-        )
-
-        Debug.log(
-
-        "Context",
-
-            context
-
-        )
-
         Debug.log(
 
             "AI",
@@ -175,7 +171,9 @@ class AURAController:
         response = ""
 
         for chunk in ai.stream(
-            context
+            memory,
+            
+            prompt
         ):
 
             response += chunk

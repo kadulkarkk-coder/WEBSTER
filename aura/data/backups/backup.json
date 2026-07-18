@@ -32,6 +32,158 @@
             {
                 "role": "user",
                 "content": "hey"
+            },
+            {
+                "role": "user",
+                "content": "hi aura"
+            },
+            {
+                "role": "user",
+                "content": "hey aura"
+            },
+            {
+                "role": "user",
+                "content": "hey aura"
+            },
+            {
+                "role": "user",
+                "content": "hey"
+            },
+            {
+                "role": "user",
+                "content": "hey webs'"
+            },
+            {
+                "role": "user",
+                "content": "hey"
+            },
+            {
+                "role": "user",
+                "content": "hey webs"
+            },
+            {
+                "role": "user",
+                "content": "hey who are you"
+            },
+            {
+                "role": "user",
+                "content": "who are you"
+            },
+            {
+                "role": "user",
+                "content": "hey who are you"
+            },
+            {
+                "role": "user",
+                "content": "hey"
+            },
+            {
+                "role": "user",
+                "content": "hey who are you"
+            },
+            {
+                "role": "assistant",
+                "content": "[ERROR]\n\n404 NOT_FOUND. {'error': {'code': 404, 'message': 'This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use a newer model for the latest features and improvements.', 'status': 'NOT_FOUND'}}"
+            },
+            {
+                "role": "user",
+                "content": "hey"
+            },
+            {
+                "role": "assistant",
+                "content": "[ERROR]\n\n404 NOT_FOUND. {'error': {'code': 404, 'message': 'This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use a newer model for the latest features and improvements.', 'status': 'NOT_FOUND'}}"
+            },
+            {
+                "role": "user",
+                "content": "hey"
+            },
+            {
+                "role": "assistant",
+                "content": "[ERROR]\n\n404 NOT_FOUND. {'error': {'code': 404, 'message': 'This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use a newer model for the latest features and improvements.', 'status': 'NOT_FOUND'}}"
+            },
+            {
+                "role": "user",
+                "content": "hey'"
+            },
+            {
+                "role": "assistant",
+                "content": "[ERROR]\n\n404 NOT_FOUND. {'error': {'code': 404, 'message': 'This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use a newer model for the latest features and improvements.', 'status': 'NOT_FOUND'}}"
+            },
+            {
+                "role": "user",
+                "content": "hey"
+            },
+            {
+                "role": "assistant",
+                "content": "[ERROR]\n\n404 NOT_FOUND. {'error': {'code': 404, 'message': 'This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use a newer model for the latest features and improvements.', 'status': 'NOT_FOUND'}}"
+            },
+            {
+                "role": "user",
+                "content": "hey"
+            },
+            {
+                "role": "assistant",
+                "content": "[ERROR]\n\n400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key not valid. Please pass a valid API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'API_KEY_INVALID', 'domain': 'googleapis.com', 'metadata': {'service': 'generativelanguage.googleapis.com'}}, {'@type': 'type.googleapis.com/google.rpc.LocalizedMessage', 'locale': 'en-US', 'message': 'API key not valid. Please pass a valid API key.'}]}}"
+            },
+            {
+                "role": "user",
+                "content": "hey hi"
+            },
+            {
+                "role": "assistant",
+                "content": "[ERROR]\n\n400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key not valid. Please pass a valid API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'API_KEY_INVALID', 'domain': 'googleapis.com', 'metadata': {'service': 'generativelanguage.googleapis.com'}}, {'@type': 'type.googleapis.com/google.rpc.LocalizedMessage', 'locale': 'en-US', 'message': 'API key not valid. Please pass a valid API key.'}]}}"
+            },
+            {
+                "role": "user",
+                "content": "HEY AURA"
+            },
+            {
+                "role": "assistant",
+                "content": "[ERROR]\n\n400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key not valid. Please pass a valid API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'API_KEY_INVALID', 'domain': 'googleapis.com', 'metadata': {'service': 'generativelanguage.googleapis.com'}}, {'@type': 'type.googleapis.com/google.rpc.LocalizedMessage', 'locale': 'en-US', 'message': 'API key not valid. Please pass a valid API key.'}]}}"
+            },
+            {
+                "role": "user",
+                "content": "hey hi"
+            },
+            {
+                "role": "assistant",
+                "content": "[ERROR]\n\n404 NOT_FOUND. {'error': {'code': 404, 'message': 'This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use a newer model for the latest features and improvements.', 'status': 'NOT_FOUND'}}"
+            },
+            {
+                "role": "user",
+                "content": "Hey hi"
+            },
+            {
+                "role": "assistant",
+                "content": "[ERROR]\n\n'tuple' object has no attribute 'text'"
+            },
+            {
+                "role": "user",
+                "content": "hey aura"
+            },
+            {
+                "role": "assistant",
+                "content": "[ERROR]\n\n'str' object has no attribute 'text'"
+            },
+            {
+                "role": "user",
+                "content": "hey aura"
+            },
+            {
+                "role": "user",
+                "content": "hey aura"
+            },
+            {
+                "role": "assistant",
+                "content": "[ERROR]\n\n404 NOT_FOUND. {'error': {'code': 404, 'message': 'This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use a newer model for the latest features and improvements.', 'status': 'NOT_FOUND'}}"
+            },
+            {
+                "role": "user",
+                "content": "hi"
+            },
+            {
+                "role": "assistant",
+                "content": "[ERROR]\n\n404 NOT_FOUND. {'error': {'code': 404, 'message': 'This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use a newer model for the latest features and improvements.', 'status': 'NOT_FOUND'}}"
             }
         ]
     },
@@ -49,7 +201,7 @@
     },
     "settings": {
         "theme": "dark",
-        "provider": "dummy",
+        "provider": "gemini",
         "voice": false,
         "window": {
             "width": 1280,

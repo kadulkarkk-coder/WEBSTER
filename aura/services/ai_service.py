@@ -52,7 +52,7 @@ class AIService:
 
         self,
 
-        provider="dummy"
+        provider="gemini"
 
     ):
 
@@ -144,6 +144,8 @@ class AIService:
 
         self,
 
+        memory,
+
         prompt
 
     ):
@@ -158,15 +160,24 @@ class AIService:
 
         return self.engine.ask(
 
+            memory,
+
             prompt
 
         )
+    
 
     # --------------------------------------------------
+
+        # ==================================================
+    # Streaming Response
+    # ==================================================
 
     def stream(
 
         self,
+
+        memory,
 
         prompt
 
@@ -184,10 +195,11 @@ class AIService:
 
         yield from self.engine.stream(
 
+            memory,
+
             prompt
 
         )
-
     # ==================================================
     # Status
     # ==================================================

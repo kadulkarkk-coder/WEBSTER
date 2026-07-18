@@ -1,6 +1,6 @@
 import threading
 import queue
-
+import traceback
 
 class AIWorker:
     """
@@ -81,7 +81,7 @@ class AIWorker:
                 )
 
         except Exception as error:
-
+            traceback.print_exc()
             self.queue.put(
                 error
             )

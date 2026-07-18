@@ -4,6 +4,7 @@ from pathlib import Path
 
 from aura.utils.debug import Debug
 
+import traceback
 
 class MemoryService:
     """
@@ -253,6 +254,7 @@ class MemoryService:
                 return json.load(file)
 
         except Exception as e:
+            traceback.print_exc()
 
             Debug.log(
 
@@ -301,6 +303,8 @@ class MemoryService:
                 )
 
         except Exception as e:
+
+            traceback.print_exc()
 
             Debug.log(
 

@@ -14,12 +14,22 @@ from aura.ui.pages.settings import SettingsPage
 
 class Layout:
 
-    def __init__(self, root, services):
+    def __init__(
+
+        self,
+
+        root,
+
+        services
+
+    ):
 
         self.root = root
+
         self.services = services
 
         self.page_manager = None
+
         self.controller = None
 
     # -------------------------------------------------
@@ -50,13 +60,24 @@ class Layout:
 
     # -------------------------------------------------
 
-    def _create_controller(self):
+    def _create_controller(
 
-        self.page_manager = PageManager(self.root)
+        self
+
+    ):
+
+        self.page_manager = PageManager(
+
+            self.root
+
+        )
 
         self.controller = AURAController(
+
             self.page_manager,
+
             self.services
+
         )
 
     # -------------------------------------------------

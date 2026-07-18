@@ -11,7 +11,7 @@ class StatusBar(ctk.CTkFrame):
 
             self,
 
-            text="Ready | AI ● | Mic ○ | Camera ○ | Internet ●"
+            text="Ready | Bro ● | Mic ○ | Masker ○ | Wi-Fi ●"
 
         )
 
