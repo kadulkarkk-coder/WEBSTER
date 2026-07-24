@@ -3,7 +3,10 @@ from aura.utils.logger import Logger
 
 from aura.core.launcher import Launcher
 from aura.core.ai_worker import AIWorker
-
+from aura.config.branding import (
+    APP_NAME,
+    VERSION
+)
 from aura.services.service_manager import ServiceManager
 
 from aura.services.ai_service import AIService
@@ -169,7 +172,13 @@ class Application:
     # Initialize
     # ==================================================
 
-    def initialize_services(self):
+    def initialize_services(
+
+        self,
+
+        splash=None
+
+    ):
 
         self.logger.info(
             "Initializing Services..."
@@ -185,7 +194,7 @@ class Application:
 
             "voice",
 
-            "vision"
+            "vision",
 
         ):
 
@@ -208,13 +217,35 @@ class Application:
                 initialize()
 
                 self.logger.info(
+
                     f"{service_name} initialized."
+
                 )
+
+                if splash:
+
+                    splash.next_step()
 
         self.logger.info(
             "All Services Initialized."
         )
 
+    # ==================================================
+    # Create Main Window
+    # ==================================================
+
+    def create_window(
+
+        self
+
+    ):
+
+        return MainWindow(
+
+            self.services
+
+        )
+    
     # ==================================================
     # Summary
     # ==================================================
@@ -271,11 +302,7 @@ class Application:
 
         self.print_summary()
 
-        window = MainWindow(
-
-            self.services
-
-        )
+        window = self.create_window()
 
         window.mainloop()
 
@@ -289,7 +316,7 @@ class Application:
 
         self.logger.info(
 
-            "Closing AURA..."
+            "Closing WEBSTER..."
 
         )
 

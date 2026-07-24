@@ -286,6 +286,13 @@ class GeminiProvider(BaseProvider):
         prompt
 
     ):
+        print("=" * 50)
+
+        print("CLIENT =", self.client)
+
+        print("INITIALIZED =", self.initialized)
+
+        print("=" * 50)
 
         self.retry_count = 0
 

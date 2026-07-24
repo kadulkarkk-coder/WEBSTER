@@ -161,7 +161,7 @@ class MemoryManager:
     def print_summary(self):
 
         print("=" * 40)
-        print("AURA MEMORY SUMMARY")
+        print("WEBSTER MEMORY SUMMARY")
         print("=" * 40)
 
         print(

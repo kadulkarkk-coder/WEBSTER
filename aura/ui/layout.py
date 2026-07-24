@@ -1,163 +1,401 @@
-from aura.ui.sidebar import Sidebar
-from aura.ui.header import Header
-from aura.ui.statusbar import StatusBar
-from aura.ui.page_manager import PageManager
+import customtkinter as ctk
 
-from aura.controller.aura_controller import AURAController
+from aura.ui.header import Header
+from aura.ui.sidebar import Sidebar
 
 from aura.ui.pages.chat import ChatPage
 from aura.ui.pages.study_hub import StudyHub
-from aura.ui.pages.plugins import PluginsPage
 from aura.ui.pages.memory import MemoryPage
+from aura.ui.pages.calendar import CalendarPage
+from aura.ui.pages.news import NewsPage
+from aura.ui.pages.plugins import PluginsPage
 from aura.ui.pages.settings import SettingsPage
 
 
-class Layout:
+class Layout(
+
+    ctk.CTkFrame
+
+):
+
+    """
+    ==================================================
+
+                    WEBSTER Layout
+
+    Main UI Container
+
+    Window
+
+        Header
+        Sidebar
+        Content
+
+    ==================================================
+    """
+
+    # ==================================================
+    # Constructor
+    # ==================================================
 
     def __init__(
 
         self,
 
-        root,
+        master,
 
-        services
+        controller,
+
+        **kwargs
 
     ):
 
-        self.root = root
+        super().__init__(
 
-        self.services = services
+            master,
 
-        self.page_manager = None
+            fg_color="transparent",
 
-        self.controller = None
+            **kwargs
 
-    # -------------------------------------------------
+        )
 
-    def build(self):
+        self.controller = controller
 
-        self._configure_grid()
+        self.pages = {}
 
-        self._create_controller()
+        self.current_page = None
 
-        self._create_header()
+        self.build()
 
-        self._create_sidebar()
+    # ==================================================
+    # Build
+    # ==================================================
 
-        self._create_pages()
-
-        self._create_statusbar()
-
-        self.page_manager.show_page("chat")
-
-    # -------------------------------------------------
-
-    def _configure_grid(self):
-
-        self.root.grid_rowconfigure(1, weight=1)
-
-        self.root.grid_columnconfigure(1, weight=1)
-
-    # -------------------------------------------------
-
-    def _create_controller(
+    def build(
 
         self
 
     ):
 
-        self.page_manager = PageManager(
+        self.grid_rowconfigure(
 
-            self.root
+            1,
 
-        )
-
-        self.controller = AURAController(
-
-            self.page_manager,
-
-            self.services
+            weight=1
 
         )
 
-    # -------------------------------------------------
+        self.grid_columnconfigure(
 
-    def _create_header(self):
+            1,
 
-        header = Header(self.root)
+            weight=1
 
-        header.grid(
-            row=0,
-            column=1,
-            sticky="ew"
         )
 
-    # -------------------------------------------------
+        self._create_header()
 
-    def _create_sidebar(self):
+        self._create_sidebar()
 
-        sidebar = Sidebar(
-            self.root,
+        self._create_container()
+
+        self._create_pages()
+
+        self.show_page(
+
+            "chat"
+
+        )
+
+    # ==================================================
+    # Header
+    # ==================================================
+
+    def _create_header(
+
+        self
+
+    ):
+
+        self.header = Header(
+
+            self,
+
             self.controller
+
         )
 
-        sidebar.grid(
+        self.header.grid(
+
             row=0,
+
             column=0,
-            rowspan=3,
-            sticky="ns"
-        )
 
-    # -------------------------------------------------
+            columnspan=2,
 
-    def _create_statusbar(self):
-
-        status = StatusBar(self.root)
-
-        status.grid(
-            row=2,
-            column=1,
             sticky="ew"
+
         )
 
-    # -------------------------------------------------
+    # ==================================================
+    # Sidebar
+    # ==================================================
 
-    def _create_pages(self):
+    def _create_sidebar(
 
-        chat = ChatPage(
-            self.root,
+        self
+
+    ):
+
+        self.sidebar = Sidebar(
+
+            self,
+
             self.controller
+
         )
 
-        study = StudyHub(self.root)
+        self.sidebar.grid(
 
-        plugins = PluginsPage(self.root)
+            row=1,
 
-        memory = MemoryPage(self.root)
+            column=0,
 
-        settings = SettingsPage(self.root)
+            sticky="ns"
 
-        self.page_manager.register_page(
-            "chat",
-            chat
         )
 
-        self.page_manager.register_page(
-            "study",
-            study
+    # ==================================================
+    # Content Container
+    # ==================================================
+
+    def _create_container(
+
+        self
+
+    ):
+
+        self.container = ctk.CTkFrame(
+
+            self,
+
+            fg_color="transparent"
+
         )
 
-        self.page_manager.register_page(
-            "plugins",
-            plugins
+        self.container.grid(
+
+            row=1,
+
+            column=1,
+
+            sticky="nsew",
+
+            padx=(5,15),
+
+            pady=(5,10)
+
         )
 
-        self.page_manager.register_page(
-            "memory",
-            memory
+        self.container.grid_rowconfigure(
+
+            0,
+
+            weight=1
+
         )
 
-        self.page_manager.register_page(
-            "settings",
-            settings
+        self.container.grid_columnconfigure(
+
+            0,
+
+            weight=1
+
         )
+
+    # ==================================================
+    # Create Pages
+    # ==================================================
+
+    def _create_pages(
+
+        self
+
+    ):
+
+        self.pages = {
+
+            "chat": ChatPage(
+
+                self.container,
+
+                self.controller
+
+            ),
+
+            "study": StudyHub(
+
+                self.container,
+
+                self.controller
+
+            ),
+
+            "memory": MemoryPage(
+
+                self.container,
+
+                self.controller
+
+            ),
+
+            "calendar": CalendarPage(
+
+                self.container,
+
+                self.controller
+
+            ),
+
+            "news": NewsPage(
+
+                self.container,
+
+                self.controller
+
+            ),
+
+            "plugins": PluginsPage(
+
+                self.container,
+
+                self.controller
+
+            ),
+
+            "settings": SettingsPage(
+
+                self.container,
+
+                self.controller
+
+            )
+
+        }
+
+        for page in self.pages.values():
+
+            page.grid(
+
+                row=0,
+
+                column=0,
+
+                sticky="nsew"
+
+            )
+
+    # ==================================================
+    # Current Page
+    # ==================================================
+
+    def get_current_page(
+
+        self
+
+    ):
+
+        return self.current_page
+    
+    # ==================================================
+    # Refresh Current
+    # ==================================================
+
+    def refresh(
+
+        self
+
+    ):
+
+        if hasattr(
+
+            self.current_page,
+
+            "refresh"
+
+        ):
+
+            self.current_page.refresh()
+
+    # ==================================================
+    # Resize Event
+    # ==================================================
+
+    def on_resize(
+
+        self,
+
+        event=None
+
+    ):
+
+        if hasattr(
+
+            self.current_page,
+
+            "on_resize"
+
+        ):
+
+            self.current_page.on_resize(
+
+                event
+
+            )
+
+    # ==================================================
+    # Public API
+    # ==================================================
+
+    def header_widget(
+
+        self
+
+    ):
+
+        return self.header
+
+
+    def sidebar_widget(
+
+        self
+
+    ):
+
+        return self.sidebar
+
+
+    def container_widget(
+
+        self
+
+    ):
+
+        return self.container
+
+
+    def page(
+
+        self,
+
+        name
+
+    ):
+
+        return self.pages.get(
+
+            name
+
+        )
+

@@ -1,61 +1,379 @@
 import customtkinter as ctk
 
-from aura.ui.theme import setup_theme
 from aura.ui.layout import Layout
+from aura.theme.theme import Theme
 
 
-class MainWindow(ctk.CTk):
+class MainWindow(
 
-    def __init__(self, services):
+    ctk.CTk
+
+):
+
+    """
+    ==================================================
+
+                    WEBSTER
+
+                 Main Window
+
+    Sprint 22
+
+    ==================================================
+    """
+
+    # ==================================================
+    # Constructor
+    # ==================================================
+
+    def __init__(
+
+        self,
+
+        services
+
+    ):
 
         super().__init__()
 
-        # -----------------------------
-        # Store Services
-        # -----------------------------
-
         self.services = services
 
-        # -----------------------------
-        # Theme
-        # -----------------------------
+        self.layout = None
 
-        setup_theme()
+        self.setup_window()
 
-        # -----------------------------
-        # Window Configuration
-        # -----------------------------
+        self.build()
 
-        self.title("W.E.B.S.T.E.R.")
+        self.bind_events()
 
-        self.geometry("1400x900")
+    # ==================================================
+    # Window Setup
+    # ==================================================
 
-        self.minsize(1200, 750)
+    def setup_window(
 
-        # -----------------------------
-        # Build UI
-        # -----------------------------
+        self
 
-        self.layout = Layout(
-            root=self,
-            services=self.services
+    ):
+
+        self.title(
+
+            "WEBSTER"
+
         )
 
-        self.layout.build()
+        self.geometry(
 
-        # -----------------------------
-        # Window Close
-        # -----------------------------
+            "1600x900"
+
+        )
+
+        self.minsize(
+
+            1280,
+
+            720
+
+        )
+
+        self.configure(
+
+            fg_color=Theme.Colors.BACKGROUND
+
+        )
 
         self.protocol(
+
             "WM_DELETE_WINDOW",
+
             self.on_close
+
         )
 
-    # ---------------------------------
+        self.grid_rowconfigure(
 
-    def on_close(self):
+            0,
 
-        print("Closing WEBSTER...")
+            weight=1
+
+        )
+
+        self.grid_columnconfigure(
+
+            0,
+
+            weight=1
+
+        )
+
+    # ==================================================
+    # Build
+    # ==================================================
+
+    def build(
+
+        self
+
+    ):
+
+        self.layout = Layout(
+
+            self,
+
+            self
+
+        )
+
+        self.layout.grid(
+
+            row=0,
+
+            column=0,
+
+            sticky="nsew"
+
+        )
+
+    # ==================================================
+    # Navigation
+    # ==================================================
+
+    def show_page(
+
+        self,
+
+        page
+
+    ):
+
+        self.layout.show_page(
+
+            page
+
+        )
+
+
+    def go_chat(
+
+        self
+
+    ):
+
+        self.show_page(
+
+            "chat"
+
+        )
+
+
+    def go_study(
+
+        self
+
+    ):
+
+        self.show_page(
+
+            "study"
+
+        )
+
+
+    def go_memory(
+
+        self
+
+    ):
+
+        self.show_page(
+
+            "memory"
+
+        )
+
+
+    def go_calendar(
+
+        self
+
+    ):
+
+        self.show_page(
+
+            "calendar"
+
+        )
+
+
+    def go_news(
+
+        self
+
+    ):
+
+        self.show_page(
+
+            "news"
+
+        )
+
+
+    def go_plugins(
+
+        self
+
+    ):
+
+        self.show_page(
+
+            "plugins"
+
+        )
+
+
+    def go_settings(
+
+        self
+
+    ):
+
+        self.show_page(
+
+            "settings"
+
+        )
+
+    # ==================================================
+    # Events
+    # ==================================================
+
+    def bind_events(
+
+        self
+
+    ):
+
+        self.bind(
+
+            "<Configure>",
+
+            self.on_resize
+
+        )
+
+    # ==================================================
+    # Resize
+    # ==================================================
+
+    def on_resize(
+
+        self,
+
+        event
+
+    ):
+
+        if self.layout:
+
+            self.layout.on_resize(
+
+                event
+
+            )
+
+    # ==================================================
+    # Services
+    # ==================================================
+
+    def service(
+
+        self,
+
+        name,
+
+        default=None
+
+    ):
+
+        if hasattr(
+
+            self.services,
+
+            "get"
+
+        ):
+
+            return self.services.get(
+
+                name,
+
+                default
+
+            )
+
+        return default
+    
+    # ==================================================
+    # Chat
+    # ==================================================
+
+    def send_message(
+
+        self,
+
+        message
+
+    ):
+
+        worker = self.service(
+
+            "ai_worker"
+
+        )
+
+        if worker:
+
+            worker.send(
+
+                message
+
+            )
+
+    # ==================================================
+    # Status
+    # ==================================================
+
+    def update_status(
+
+        self,
+
+        text
+
+    ):
+
+        chat = self.layout.page(
+
+            "chat"
+
+        )
+
+        if chat:
+
+            chat.title.set_subtitle(
+
+                text
+
+            )
+
+    # ==================================================
+    # Close
+    # ==================================================
+
+    def on_close(
+
+        self
+
+    ):
 
         self.destroy()
+

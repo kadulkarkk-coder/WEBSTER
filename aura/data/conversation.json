@@ -183,6 +183,34 @@
         {
             "role": "assistant",
             "content": "[ERROR]\n\n404 NOT_FOUND. {'error': {'code': 404, 'message': 'This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use a newer model for the latest features and improvements.', 'status': 'NOT_FOUND'}}"
+        },
+        {
+            "role": "user",
+            "content": "hey webs who are you"
+        },
+        {
+            "role": "user",
+            "content": "hey who are you"
+        },
+        {
+            "role": "assistant",
+            "content": "Hi there! I am AURA, your desktop AI assistant. \n\nIt looks like my system was having some technical hiccups and error messages earlier, but I'm back up and running smoothly now. I'm here to help you with whatever you need—whether that's answering questions, helping with tasks, or just chatting. \n\nHow can I help you today?"
+        },
+        {
+            "role": "user",
+            "content": "who are you"
+        },
+        {
+            "role": "assistant",
+            "content": "I am AURA, your desktop AI assistant! \n\nI'm here to help make your day a bit easier—whether that's by answering questions, helping you brainstorm, writing and editing, or just keeping you company while you work. Think of me as your go-to digital companion. \n\nHow can I help you out today?"
+        },
+        {
+            "role": "user",
+            "content": "tell me whar python is"
+        },
+        {
+            "role": "assistant",
+            "content": "Python is one of the most popular and widely-used programming languages in the world today. \n\nIf you are new to coding, the best way to think of Python is as the \"English\" of programming languages. It was specifically designed to be easy to read and write. Instead of using complex symbols and confusing syntax, Python uses clear, plain-English-like commands. \n\nHere is a quick breakdown of why it is so popular and what people use it for:\n\n* **Super Versatile:** You can use Python for almost anything. It is the leading language for **Artificial Intelligence (AI) and Machine Learning**, but it is also used for web development, data analysis, scientific research, and game development.\n* **Great for Beginners:** Because its code is so clean and readable, it is usually the very first language people learn when they want to get into programming.\n* **Automation:** People often use Python to automate boring, repetitive tasks on their computers—like renaming thousands of files at once, scraping information from websites, or sorting through massive Excel spreadsheets.\n* **Massive Community:** Since millions of people use it, there is a giant community of developers who share pre-written code (called libraries). This means if you want to build something, someone else has probably already created a shortcut or tool to help you do it.\n\nWhether you are looking to build the next big AI tool, analyze some data, or just make your daily computer tasks a bit easier, Python is usually the perfect tool for the job. \n\nAre you thinking about learning Python, or are you just curious about how it works? I can easily show you a quick example of what the code looks like if you'd like!"
         }
     ]
 }

@@ -108,31 +108,37 @@ class AIService:
 
             return
 
-        self.shutdown()
-
-        self.initialize(
+        provider_instance = ProviderFactory.create(
 
             provider
 
         )
 
+        self.engine.set_provider(
+
+            provider_instance
+
+        )
+
+        self.provider_name = provider
+
         if memory:
 
             memory.set_setting(
 
-               "provider",
+                "provider",
 
-               provider
+                provider
 
-           )
+            )
 
             memory.save()
 
         Debug.log(
 
-           "AI",
+            "AI",
 
-           f"Provider changed to '{provider}'"
+            f"Provider changed to '{provider}'"
 
         )
 
@@ -210,7 +216,11 @@ class AIService:
 
     # --------------------------------------------------
 
-    def get_status(self):
+    def get_status(
+
+        self
+
+    ):
 
         if not self.initialized:
 
@@ -223,22 +233,23 @@ class AIService:
             return provider.get_status()
 
         return "Offline"
+    # --------------------------------------------------
+
+    def get_provider_name(
+
+        self
+
+    ):
+
+        return self.engine.get_provider_name()
 
     # --------------------------------------------------
 
-    def get_provider_name(self):
+    def get_provider_version(
 
-        provider = self.engine.get_provider()
+        self
 
-        if provider:
-
-            return provider.get_name()
-
-        return "None"
-
-    # --------------------------------------------------
-
-    def get_provider_version(self):
+    ):
 
         provider = self.engine.get_provider()
 
@@ -247,6 +258,18 @@ class AIService:
             return provider.get_version()
 
         return "Unknown"
+
+    # ==================================================
+    # Provider Manager
+    # ==================================================
+
+    def get_provider_manager(
+
+        self
+
+    ):
+
+        return self.engine.get_provider_manager()
 
     # ==================================================
     # Shutdown

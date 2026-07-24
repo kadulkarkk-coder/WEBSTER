@@ -23,7 +23,7 @@ class StatusManager:
 
             "idle": {
 
-                "emoji": "🔵",
+                "image": "idle",
 
                 "text": "Ready"
 
@@ -31,7 +31,7 @@ class StatusManager:
 
             "thinking": {
 
-                "emoji": "🟣",
+                "image": "thinking",
 
                 "text": "WEBSTER is thinking..."
 
@@ -39,7 +39,7 @@ class StatusManager:
 
             "listening": {
 
-                "emoji": "🟢",
+                "image": "listening",
 
                 "text": "Listening..."
 
@@ -47,15 +47,55 @@ class StatusManager:
 
             "speaking": {
 
-                "emoji": "🟡",
+                "image": "speaking",
 
                 "text": "Speaking..."
 
             },
 
+            "offline": {
+
+                "image": "offline",
+
+                "text": "Offline"
+
+            },
+
+            "sleeping": {
+
+                "emoji": "🌙",
+
+                "text": "Sleeping..."
+
+            },
+
+            "vision": {
+
+                "emoji": "📷",
+
+                "text": "Scanning..."
+
+            },
+
+            "searching": {
+
+                "emoji": "🔎",
+
+                "text": "Searching..."
+
+            },
+
+            "coding": {
+
+                "emoji": "💻",
+
+                "text": "Coding..."
+
+            },
+
             "error": {
 
-                "emoji": "🔴",
+                "emoji": "error",
 
                 "text": "An error occurred."
 
@@ -65,27 +105,109 @@ class StatusManager:
 
         self.current_state = "idle"
 
+        self.listeners = []
+
     # ==================================================
     # State
     # ==================================================
 
-    def set_state(self, state):
+    def set_state(
+
+        self,
+
+        state
+
+    ):
 
         if state not in self.states:
 
             Debug.log(
+
                 "Status",
+
                 f"Unknown state '{state}'"
+
             )
 
             return
 
         Debug.log(
+
             "Status",
+
             f"Changing state -> {state}"
+
         )
 
         self.current_state = state
+
+        self.notify_listeners()
+
+    # ==================================================
+    # Listeners
+    # ==================================================
+
+    def register_listener(
+
+        self,
+
+        listener
+
+    ):
+
+        if listener not in self.listeners:
+
+            self.listeners.append(
+
+                listener
+
+            )
+
+    # --------------------------------------------------
+
+    def unregister_listener(
+
+        self,
+
+        listener
+
+    ):
+
+        if listener in self.listeners:
+
+            self.listeners.remove(
+
+                listener
+
+            )
+
+    # --------------------------------------------------
+
+    def notify_listeners(
+
+        self
+
+    ):
+
+        for listener in self.listeners:
+
+            try:
+
+                listener(
+
+                    self.current_state
+
+                )
+
+            except Exception as e:
+
+                Debug.log(
+
+                    "Status",
+
+                    str(e)
+
+                )
 
     # --------------------------------------------------
 
@@ -109,11 +231,15 @@ class StatusManager:
 
     # --------------------------------------------------
 
-    def get_emoji(self):
+    def get_image(
+
+        self
+
+    ):
 
         return self.states[
             self.current_state
-        ]["emoji"]
+        ]["image"]
 
     # ==================================================
     # Convenience Methods
@@ -135,6 +261,56 @@ class StatusManager:
 
         self.set_state("listening")
 
+    # --------------------------------------------------
+
+    def offline(self):
+
+        self.set_state(
+
+            "offline"
+
+        )
+
+    # --------------------------------------------------
+
+    def sleeping(self):
+
+        self.set_state(
+
+            "sleeping"
+
+        )
+
+    # --------------------------------------------------
+
+    def vision(self):
+
+        self.set_state(
+
+            "vision"
+
+        )
+
+    # --------------------------------------------------
+
+    def searching(self):
+
+        self.set_state(
+
+            "searching"
+
+        )
+
+    # --------------------------------------------------
+
+    def coding(self):
+
+        self.set_state(
+
+            "coding"
+
+        )
+    
     # --------------------------------------------------
 
     def speaking(self):
@@ -167,6 +343,37 @@ class StatusManager:
 
         return self.current_state == "listening"
 
+    
+    # --------------------------------------------------
+
+    def is_offline(self):
+
+        return self.current_state == "offline"
+
+    # --------------------------------------------------
+
+    def is_sleeping(self):
+
+        return self.current_state == "sleeping"
+
+    # --------------------------------------------------
+
+    def is_vision(self):
+
+        return self.current_state == "vision"
+
+    # --------------------------------------------------
+
+    def is_searching(self):
+
+        return self.current_state == "searching"
+
+    # --------------------------------------------------
+
+    def is_coding(self):
+
+        return self.current_state == "coding"
+    
     # --------------------------------------------------
 
     def is_speaking(self):

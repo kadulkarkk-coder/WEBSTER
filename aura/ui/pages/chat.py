@@ -1,22 +1,31 @@
 import customtkinter as ctk
 
-from aura.core.ai_worker import AIWorker
-from aura.ui.orb.orb_controller import OrbController
+from aura.ui.widgets.glass_panel import GlassPanel
+from aura.ui.widgets.glass_bar import GlassBar
+from aura.ui.widgets.glass_entry import GlassEntry
+from aura.ui.widgets.glass_button import GlassButton
+from aura.ui.widgets.glass_ring import GlassRing
+from aura.ui.widgets.glass_title import GlassTitle
+from aura.ui.widgets.glass_separator import GlassSeparator
+from aura.ui.widgets.glass_frame import GlassFrame
 
 
-class ChatPage(ctk.CTkFrame):
+class ChatPage(
+
+    ctk.CTkFrame
+
+):
 
     """
-    AURA Chat Interface
+    ==================================================
 
-    Responsibilities
-    ----------------
-    • Display conversation
-    • Send prompts
-    • Stream AI responses
-    • Update orb & status
-    • Auto scrolling
-    • Background AI worker
+                    WEBSTER Chat
+
+    Sprint 22
+
+    Cherry Glass Interface
+
+    ==================================================
     """
 
     # ==================================================
@@ -24,226 +33,144 @@ class ChatPage(ctk.CTkFrame):
     # ==================================================
 
     def __init__(
+
         self,
+
         master,
-        controller
+
+        controller,
+
+        **kwargs
+
     ):
 
-        super().__init__(master)
+        super().__init__(
+
+            master,
+
+            fg_color="transparent",
+
+            **kwargs
+
+        )
 
         self.controller = controller
 
         self.build()
 
-        self.orb_controller = OrbController(
+    # ==================================================
+    # Build
+    # ==================================================
 
-            self.orb,
+    def build(
 
-            self.status
+        self
+
+    ):
+
+        self.grid_rowconfigure(
+
+            0,
+
+            weight=1
 
         )
 
-        self.update_status()
-        
-        self.entry.focus()
-
-    # ==================================================
-    # Build UI
-    # ==================================================
-
-    def build(self):
-
-        # ----------------------------------------------
-        # Layout
-        # ----------------------------------------------
-
         self.grid_rowconfigure(
-            2,
-            weight=1
+
+            1,
+
+            weight=0
+
         )
 
         self.grid_columnconfigure(
+
             0,
-            weight=1
+
+            weight=4
+
         )
 
-        # ----------------------------------------------
-        # Orb
-        # ----------------------------------------------
+        self.grid_columnconfigure(
 
-        self.orb = ctk.CTkLabel(
+            1,
+
+            weight=1
+
+        )
+
+        self._build_chat_panel()
+
+        self._build_ai_panel()
+
+        self._build_input_bar()
+
+    # ==================================================
+    # Chat Panel
+    # ==================================================
+
+    def _build_chat_panel(
+
+        self
+
+    ):
+
+        self.chat_panel = GlassPanel(
 
             self,
 
-            text="🔵",
+            image="panel_large",
 
-            font=(
-                "Segoe UI Emoji",
-                46
-            )
+            size=(980,720)
 
         )
 
-        self.orb.grid(
+        self.chat_panel.grid(
 
             row=0,
-
-            column=0,
-
-            pady=(20, 5)
-
-        )
-
-        # ----------------------------------------------
-        # Status
-        # ----------------------------------------------
-
-        self.status = ctk.CTkLabel(
-
-            self,
-
-            text="Ready",
-
-            font=(
-                "Segoe UI",
-                14
-            )
-
-        )
-
-        self.status.grid(
-
-            row=1,
-
-            column=0,
-
-            pady=(0, 10)
-
-        )
-
-        # ----------------------------------------------
-        # Chat Container
-        # ----------------------------------------------
-
-        chat_frame = ctk.CTkFrame(
-            self
-        )
-
-        chat_frame.grid(
-
-            row=2,
 
             column=0,
 
             sticky="nsew",
 
-            padx=20
+            padx=(15,8),
+
+            pady=(10,8)
 
         )
 
-        chat_frame.grid_rowconfigure(
+        self.chat_panel.body().grid_rowconfigure(
+
             0,
+
             weight=1
+
         )
 
-        chat_frame.grid_columnconfigure(
+        self.chat_panel.body().grid_columnconfigure(
+
             0,
+
             weight=1
-        )
-
-        # ----------------------------------------------
-        # Chat Box
-        # ----------------------------------------------
-
-        self.chatbox = ctk.CTkTextbox(
-
-            chat_frame,
-
-            wrap="word",
-
-            corner_radius=12
 
         )
 
-        self.chatbox.grid(
+        self.messages = ctk.CTkScrollableFrame(
+
+            self.chat_panel.body(),
+
+            fg_color="transparent"
+
+        )
+
+        self.messages.grid(
 
             row=0,
 
             column=0,
 
-            sticky="nsew"
-
-        )
-
-        self.chatbox.configure(
-
-            state="disabled"
-
-        )
-
-        # ----------------------------------------------
-        # Scroll Buttons
-        # ----------------------------------------------
-
-        self.top_button = ctk.CTkButton(
-
-            chat_frame,
-
-            text="▲",
-
-            width=38,
-
-            command=self.scroll_to_top
-
-        )
-
-        self.top_button.place(
-
-            relx=0.97,
-
-            rely=0.84,
-
-            anchor="center"
-
-        )
-
-        self.bottom_button = ctk.CTkButton(
-
-            chat_frame,
-
-            text="▼",
-
-            width=38,
-
-            command=self.scroll_to_bottom
-
-        )
-
-        self.bottom_button.place(
-
-            relx=0.97,
-
-            rely=0.92,
-
-            anchor="center"
-
-        )
-
-        # ----------------------------------------------
-        # Bottom Input Bar
-        # ----------------------------------------------
-
-        bottom = ctk.CTkFrame(
-            self
-        )
-
-        bottom.grid(
-
-            row=3,
-
-            column=0,
-
-            sticky="ew",
+            sticky="nsew",
 
             padx=20,
 
@@ -251,7 +178,41 @@ class ChatPage(ctk.CTkFrame):
 
         )
 
-        bottom.grid_columnconfigure(
+    # ==================================================
+    # AI Panel
+    # ==================================================
+
+    def _build_ai_panel(
+
+        self
+
+    ):
+
+        self.ai_panel = GlassPanel(
+
+            self,
+
+            image="panel_small",
+
+            size=(320,720)
+
+        )
+
+        self.ai_panel.grid(
+
+            row=0,
+
+            column=1,
+
+            sticky="nsew",
+
+            padx=(8,15),
+
+            pady=(10,8)
+
+        )
+
+        self.ai_panel.body().grid_columnconfigure(
 
             0,
 
@@ -259,15 +220,254 @@ class ChatPage(ctk.CTkFrame):
 
         )
 
-        # ----------------------------------------------
-        # Message Entry
-        # ----------------------------------------------
+        self.ring = GlassRing(
 
-        self.entry = ctk.CTkEntry(
+            self.ai_panel.body(),
 
-            bottom,
+            state="idle",
 
-            placeholder_text="Ask WEBSTER anything..."
+            size=(180,180)
+
+        )
+
+        self.ring.pack(
+
+            pady=(30,20)
+
+        )
+
+        self.title = GlassTitle(
+
+            self.ai_panel.body(),
+
+            title="WEBSTER",
+
+            subtitle="Standing By",
+
+            icon_category="system",
+
+            text="ai"
+
+        )
+
+        self.title.pack(
+
+            pady=(0,20)
+
+        )
+
+        GlassSeparator(
+
+            self.ai_panel.body()
+
+        ).pack(
+
+            fill="x",
+
+            padx=20,
+
+            pady=(0,20)
+
+        )
+
+        self.info = GlassFrame(
+
+            self.ai_panel.body(),
+
+            image="frame_info",
+
+            size=(260,320)
+
+        )
+
+        self.info.pack(
+
+            padx=18,
+
+            fill="both",
+
+            expand=True
+        )
+
+    # ==================================================
+    # Input Bar
+    # ==================================================
+
+    def _build_input_bar(
+
+        self
+
+    ):
+
+        self.bottom_panel = GlassPanel(
+
+            self,
+
+            image="panel_bottom",
+
+            size=(1320,110)
+
+        )
+
+        self.bottom_panel.grid(
+
+            row=1,
+
+            column=0,
+
+            columnspan=2,
+
+            sticky="ew",
+
+            padx=15,
+
+            pady=(0,10)
+
+        )
+
+        self.bottom_panel.body().grid_rowconfigure(
+
+            0,
+
+            weight=1
+
+        )
+
+        self.bottom_panel.body().grid_columnconfigure(
+
+            1,
+
+            weight=1
+
+        )
+
+        self._build_left_actions()
+
+        self._build_entry()
+
+        self._build_right_actions()
+
+    # ==================================================
+    # Left Actions
+    # ==================================================
+
+    def _build_left_actions(
+
+        self
+
+    ):
+
+        self.left_actions = ctk.CTkFrame(
+
+            self.bottom_panel.body(),
+
+            fg_color="transparent"
+
+        )
+
+        self.left_actions.grid(
+
+            row=0,
+
+            column=0,
+
+            padx=(15,10),
+
+            pady=15,
+
+            sticky="w"
+
+        )
+
+        self.voice_button = GlassButton(
+
+            self.left_actions,
+
+            panel="button_round",
+
+            icon_category="system",
+
+            text="voice",
+
+            size=(56,56),
+
+            command=self.toggle_voice
+
+        )
+
+        self.voice_button.pack(
+
+            side="left",
+
+            padx=4
+
+        )
+
+        self.mic_button = GlassButton(
+
+            self.left_actions,
+
+            panel="button_round",
+
+            icon_category="system",
+
+            text="microphone",
+
+            size=(56,56),
+
+            command=self.start_listening
+
+        )
+
+        self.mic_button.pack(
+
+            side="left",
+
+            padx=4
+
+        )
+
+        self.camera_button = GlassButton(
+
+            self.left_actions,
+
+            panel="button_round",
+
+            icon_category="system",
+
+            text="camera",
+
+            size=(56,56),
+
+            command=self.open_camera
+
+        )
+
+        self.camera_button.pack(
+
+            side="left",
+
+            padx=4
+
+        )
+
+    # ==================================================
+    # Entry
+    # ==================================================
+
+    def _build_entry(
+
+        self
+
+    ):
+
+        self.entry = GlassEntry(
+
+            self.bottom_panel.body(),
+
+            placeholder="Ask WEBSTER anything...",
+
+            size=(780,60)
 
         )
 
@@ -275,11 +475,13 @@ class ChatPage(ctk.CTkFrame):
 
             row=0,
 
-            column=0,
+            column=1,
 
             sticky="ew",
 
-            padx=(0, 10)
+            padx=15,
+
+            pady=15
 
         )
 
@@ -291,469 +493,473 @@ class ChatPage(ctk.CTkFrame):
 
         )
 
-        # ----------------------------------------------
-        # Send Button
-        # ----------------------------------------------
+    # ==================================================
+    # Right Actions
+    # ==================================================
 
-        self.send_button = ctk.CTkButton(
+    def _build_right_actions(
 
-            bottom,
+        self
 
-            text="Send",
+    ):
 
-            width=90,
+        self.right_actions = ctk.CTkFrame(
+
+            self.bottom_panel.body(),
+
+            fg_color="transparent"
+
+        )
+
+        self.right_actions.grid(
+
+            row=0,
+
+            column=2,
+
+            padx=(10,15),
+
+            pady=15,
+
+            sticky="e"
+
+        )
+
+        self.memory_button = GlassButton(
+
+            self.right_actions,
+
+            panel="button_round",
+
+            icon_category="system",
+
+            text="memory",
+
+            size=(56,56),
+
+            command=self.open_memory
+
+        )
+
+        self.memory_button.pack(
+
+            side="left",
+
+            padx=4
+
+        )
+
+        self.plugins_button = GlassButton(
+
+            self.right_actions,
+
+            panel="button_round",
+
+            icon_category="system",
+
+            text="plugins",
+
+            size=(56,56),
+
+            command=self.open_plugins
+
+        )
+
+        self.plugins_button.pack(
+
+            side="left",
+
+            padx=4
+
+        )
+
+        self.send_button = GlassButton(
+
+            self.right_actions,
+
+            panel="button_round",
+
+            icon_category="controls",
+
+            text="send",
+
+            size=(60,60),
 
             command=self.send_message
 
         )
 
-        self.send_button.grid(
+        self.send_button.pack(
 
-            row=0,
+            side="left",
 
-            column=1
-
-        )
-
-    # ==================================================
-    # Status
-    # ==================================================
-
-    def update_status(self):
-
-        status_manager = self.controller.get_service(
-
-            "status_manager"
+            padx=(8,0)
 
         )
-
-        if status_manager is None:
-
-            return
-
-        data = status_manager.get_status()
-
-        self.status.configure(
-
-            text=data["text"]
-
-        )
-
-        self.orb.configure(
-
-            text=data["emoji"]
-
-        )
-
-        state = status_manager.get_status()
-
-        if state == "idle":
-
-            self.orb_controller.idle()
-
-        elif state == "thinking":
-
-            self.orb_controller.thinking()
-
-        elif state == "listening":
-
-            self.orb_controller.listening()
-
-        elif state == "speaking":
-
-            self.orb_controller.speaking()
-
-        elif state == "error":
-
-            self.orb_controller.error()
-
-    # ==================================================
-    # Append Message
-    # ==================================================
-
-    def append_message(
-        self,
-        speaker,
-        message
-    ):
-
-        self.chatbox.configure(
-            state="normal"
-        )
-
-        self.chatbox.insert(
-            "end",
-            f"{speaker}: {message}\n\n"
-        )
-
-        self.chatbox.configure(
-            state="disabled"
-        )
-
-        self.scroll_to_bottom()
-
-    # ==================================================
-    # Load Conversation History
-    # ==================================================
-
-    def load_history(self):
-
-        memory = self.controller.get_service(
-            "memory"
-        )
-
-        if memory is None:
-            return
-
-        messages = memory.get_messages()
-
-        for message in messages:
-
-            role = message.get(
-                "role",
-                ""
-            )
-
-            content = message.get(
-                "content",
-                ""
-            )
-
-            if role == "user":
-
-                self.append_message(
-                    "👤 You",
-                    content
-                )
-
-            elif role == "assistant":
-
-                self.append_message(
-                    "🕷️ WEBSTER",
-                    content
-                )
-
-            elif role == "system":
-
-                self.append_message(
-                    "⚙ System",
-                    content
-                )
-
-    # ==================================================
-    # Scroll Helpers
-    # ==================================================
-
-    def scroll_to_top(self):
-
-        self.chatbox.yview_moveto(
-            0
-        )
-
-    # --------------------------------------------------
-
-    def scroll_to_bottom(self):
-
-        self.chatbox.see(
-            "end"
-        )
-
-    # ==================================================
-    # Keyboard
-    # ==================================================
-
-    def on_enter(
-        self,
-        event=None
-    ):
-
-        self.send_message()
 
     # ==================================================
     # Send Message
     # ==================================================
 
-    def send_message(self):
+    def send_message(
 
-        prompt = self.entry.get().strip()
-
-        if not prompt:
-            return
-
-        self.entry.delete(
-            0,
-            "end"
-        )
-
-        self.append_message(
-            "👤 You",
-            prompt
-        )
-
-        self.begin_stream()
-
-        self.entry.configure(
-            state="disabled"
-        )
-
-        self.send_button.configure(
-            state="disabled"
-        )
-
-        status = self.controller.get_service(
-            "status_manager"
-        )
-
-        if status:
-
-            status.set_state(
-                "thinking"
-            )
-
-        self.update_status()
-
-        worker = self.controller.get_service(
-            "ai_worker"
-        )
-
-        worker.start_stream(
-
-            self.controller.stream_message,
-
-            prompt
-
-        )
-
-        self.after(
-            30,
-            self.poll_stream
-        )
-
-    # ==================================================
-    # Begin Streaming
-    # ==================================================
-
-    def begin_stream(self):
-
-        self.chatbox.configure(
-            state="normal"
-        )
-
-        self.chatbox.insert(
-            "end",
-            "🕷️ WEBSTER: "
-        )
-
-        self.chatbox.configure(
-            state="disabled"
-        )
-
-        self.scroll_to_bottom()
-
-    # ==================================================
-    # Poll Worker Queue
-    # ==================================================
-
-    def poll_stream(self):
-
-        worker = self.controller.get_service(
-            "ai_worker"
-        )
-
-        while True:
-
-            chunk = worker.get_chunk()
-
-            if chunk is None:
-
-                break
-
-            if chunk is AIWorker.END:
-
-                self.finish_stream()
-
-                self.finish_ai()
-
-                return
-
-            if isinstance(
-                chunk,
-                Exception
-            ):
-
-                self.stream_chunk(
-
-                    f"\n\n[ERROR]\n{chunk}"
-
-                )
-
-                self.finish_stream()
-
-                self.finish_ai()
-
-                return
-
-            self.stream_chunk(
-                chunk
-            )
-
-        self.after(
-
-            30,
-
-            self.poll_stream
-
-        )
-
-    # ==================================================
-    # Stream One Chunk
-    # ==================================================
-
-    def stream_chunk(
-
-        self,
-
-        chunk
+        self
 
     ):
 
-        self.chatbox.configure(
+        message = self.entry.get().strip()
 
-            state="normal"
+        if not message:
 
-        )
+            return
 
-        self.chatbox.insert(
+        self.entry.clear()
 
-            "end",
+        self.append_message(
 
-            chunk
+            sender="You",
 
-        )
-
-        self.chatbox.configure(
-
-            state="disabled"
+            message=message
 
         )
 
-        self.scroll_to_bottom()
+        if hasattr(
 
-    # ==================================================
-    # Finish Stream
-    # ==================================================
+            self.controller,
 
-    def finish_stream(self):
+            "send_message"
 
-        self.chatbox.configure(
+        ):
 
-            state="normal"
+            self.controller.send_message(
 
-        )
+                message
 
-        self.chatbox.insert(
-
-            "end",
-
-            "\n\n"
-
-        )
-
-        self.chatbox.configure(
-
-            state="disabled"
-
-        )
-
-        self.scroll_to_bottom()
-
-    # ==================================================
-    # Finish AI Request
-    # ==================================================
-
-    def finish_ai(self):
-
-        status = self.controller.get_service(
-            "status_manager"
-        )
-
-        if status:
-
-            status.set_state(
-                "idle"
             )
 
-        self.update_status()
+    # ==================================================
+    # Enter
+    # ==================================================
 
-        self.entry.configure(
-            state="normal"
+    def on_enter(
+
+        self,
+
+        event=None
+
+    ):
+
+        self.send_message()
+
+        return "break"
+    
+    # ==================================================
+    # Append Message
+    # ==================================================
+
+    def append_message(
+
+        self,
+
+        sender,
+
+        message
+
+    ):
+
+        bubble = GlassFrame(
+
+            self.messages,
+
+            image="frame_message",
+
+            size=(760,120)
+
         )
 
-        self.send_button.configure(
-            state="normal"
+        bubble.pack(
+
+            fill="x",
+
+            padx=8,
+
+            pady=6
+
         )
 
-        self.entry.focus()
+        title = ctk.CTkLabel(
 
-    # ==================================================
-    # Focus Input
-    # ==================================================
+            bubble.body(),
 
-    def focus_input(self):
+            text=sender,
 
-        self.entry.focus()
+            anchor="w",
 
-    # ==================================================
-    # Refresh Page
-    # ==================================================
+            font=(
 
-    def refresh(self):
+                "Segoe UI",
 
-        self.update_status()
+                14,
 
-    # ==================================================
-    # Clear Display
-    # ==================================================
+                "bold"
 
-    def clear_display(self):
+            )
 
-        """
-        Clears only the textbox.
-
-        Memory is NOT deleted.
-        """
-
-        self.chatbox.configure(
-            state="normal"
         )
 
-        self.chatbox.delete(
-            "1.0",
-            "end"
+        title.pack(
+
+            anchor="w",
+
+            padx=15,
+
+            pady=(12,4)
+
         )
 
-        self.chatbox.configure(
-            state="disabled"
+        body = ctk.CTkLabel(
+
+            bubble.body(),
+
+            text=message,
+
+            justify="left",
+
+            wraplength=700,
+
+            anchor="w",
+
+            font=(
+
+                "Segoe UI",
+
+                13
+
+            )
+
+        )
+
+        body.pack(
+
+            anchor="w",
+
+            padx=15,
+
+            pady=(0,12)
+
+        )
+
+        self.messages._parent_canvas.yview_moveto(
+
+            1.0
+
         )
 
     # ==================================================
-    # Reload Conversation
+    # AI Message
     # ==================================================
 
-    def reload_history(self):
+    def append_ai(
 
-        """
-        Reload messages from MemoryService.
-        """
+        self,
 
-        self.clear_display()
+        message
 
-        self.load_history()
+    ):
+
+        self.append_message(
+
+            sender="WEBSTER",
+
+            message=message
+
+        )
 
     # ==================================================
-    # Destructor
+    # Clear
     # ==================================================
 
-    def destroy(self):
+    def clear_chat(
 
-        super().destroy()
+        self
+
+    ):
+
+        for widget in self.messages.winfo_children():
+
+            widget.destroy()
+
+    # ==================================================
+    # Loading
+    # ==================================================
+
+    def set_loading(
+
+        self,
+
+        state=True
+
+    ):
+
+        if state:
+
+            self.ring.set_state(
+
+                "thinking"
+
+            )
+
+            self.title.set_subtitle(
+
+                "Thinking..."
+
+            )
+
+        else:
+
+            self.ring.set_state(
+
+                "idle"
+
+            )
+
+            self.title.set_subtitle(
+
+                "Standing By"
+
+            )
+
+    # ==================================================
+    # Loading
+    # ==================================================
+
+    def set_loading(
+
+        self,
+
+        state=True
+
+    ):
+
+        if state:
+
+            self.ring.set_state(
+
+                "thinking"
+
+            )
+
+            self.title.set_subtitle(
+
+                "Thinking..."
+
+            )
+
+        else:
+
+            self.ring.set_state(
+
+                "idle"
+
+            )
+
+            self.title.set_subtitle(
+
+                "Standing By"
+
+            )
+
+    # ==================================================
+    # Voice
+    # ==================================================
+
+    def toggle_voice(
+
+        self
+
+    ):
+
+        self.ring.set_state(
+
+            "listening"
+
+        )
+
+    # ==================================================
+    # Camera
+    # ==================================================
+
+    def open_camera(
+
+        self
+
+    ):
+
+        pass
+
+    # ==================================================
+    # Memory
+    # ==================================================
+
+    def open_memory(
+
+        self
+
+    ):
+
+        if hasattr(
+
+            self.controller,
+
+            "go_memory"
+
+        ):
+
+            self.controller.go_memory()
+
+    # ==================================================
+    # Plugins
+    # ==================================================
+
+    def open_plugins(
+
+        self
+
+    ):
+
+        if hasattr(
+
+            self.controller,
+
+            "go_plugins"
+
+        ):
+
+            self.controller.go_plugins()
+
+    # ==================================================
+    # Refresh
+    # ==================================================
+
+    def refresh(
+
+        self
+
+    ):
+
+        pass
+
+    # ==================================================
+    # Resize
+    # ==================================================
+
+    def on_resize(
+
+        self,
+
+        event=None
+
+    ):
+
+        pass
+

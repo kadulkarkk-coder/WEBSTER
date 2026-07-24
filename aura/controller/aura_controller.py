@@ -1,5 +1,5 @@
 from aura.utils.debug import Debug
-
+from aura.ui.components.spidey_core import SpideyCore
 
 class AURAController:
 
@@ -33,6 +33,8 @@ class AURAController:
 
         )
 
+        self.spidey_core = None
+
         Debug.log(
 
             "Controller",
@@ -53,6 +55,7 @@ class AURAController:
         return self.services.get(
             name
         )
+ 
 
     # ==================================================
     # Status
@@ -113,6 +116,71 @@ class AURAController:
             "settings"
         )
 
+    def go_calendar(self):
+
+        self.page_manager.show_page(
+            "calendar"
+        )
+
+
+    def go_fomo(self):
+
+            self.page_manager.show_page(
+            "fomo"
+        )
+
+
+    def go_news(self):
+
+        self.page_manager.show_page(
+            "news"
+            )
+        
+    def go_calendar(
+
+        self
+
+    ):
+
+        self.page_manager.show_page(
+
+            "calendar"
+
+        )
+
+
+    def go_fomo(
+
+        self
+
+    ):
+
+        self.page_manager.show_page(
+
+            "fomo"
+
+        )
+
+
+    def go_news(
+
+        self
+
+    ):
+
+        self.page_manager.show_page(
+
+            "news"
+
+        )
+
+    # ==================================================
+    # Spidey Core
+    # ==================================================
+
+    
+    # --------------------------------------------------
+
     # ==================================================
     # Streaming Chat
     # ==================================================
@@ -148,6 +216,8 @@ class AURAController:
 
             status.thinking()
 
+            
+        
         # ==================================================
         # Save User Message
         # ==================================================
@@ -170,11 +240,23 @@ class AURAController:
 
         response = ""
 
+        started = False
+
         for chunk in ai.stream(
+
             memory,
-            
+
             prompt
+
         ):
+
+            if not started:
+
+                if status:
+
+                    status.speaking()
+
+                started = True
 
             response += chunk
 

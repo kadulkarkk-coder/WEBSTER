@@ -1,13 +1,18 @@
+from aura.config.branding import (
+    APP_NAME,
+    VERSION
+)
+
 class Launcher:
     def __init__(self, settings, logger):
         self.settings = settings
         self.logger = logger
 
     def start(self):
-        self.logger.info("Starting AURA")
+        self.logger.info("Starting WEBSTER")
 
         print("=" * 40)
-        print(f"{self.settings.get('app_name')} v{self.settings.get('version')}")
+        print(f"{APP_NAME} v{VERSION}")
         print("=" * 40)
 
         print()
@@ -24,4 +29,4 @@ class Launcher:
 
         self.logger.info("WEBSTER Started Successfully")
 
-        print("Welcome to WEBSTER!")
+        print("Welcome to WEBSTER!\nHi!\nI'm Spidey.\nHow can I help today?")

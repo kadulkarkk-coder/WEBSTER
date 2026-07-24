@@ -1,5 +1,6 @@
 from aura.ai.conversation_context import ConversationContext
 
+from aura.ai.provider_manager import ProviderManager
 
 class AIEngine:
 
@@ -13,10 +14,9 @@ class AIEngine:
 
     ):
 
-        self.provider = "gemini"
+        self.provider_manager = ProviderManager()
 
         self.context = ConversationContext()
-
     # ==================================================
     # Provider
     # ==================================================
@@ -29,10 +29,23 @@ class AIEngine:
 
     ):
 
-        self.provider = provider
+        provider.initialize()
 
-        self.provider.initialize()
+        name = provider.get_name().lower()
 
+        self.provider_manager.register(
+
+            name,
+
+            provider
+
+        )
+
+        self.provider_manager.activate(
+
+            name
+
+        )
     # ==================================================
     # Standard Response
     # ==================================================
@@ -47,7 +60,9 @@ class AIEngine:
 
     ):
 
-        if self.provider is None:
+        provider = self.provider_manager.current()
+
+        if provider is None:
 
             return "No AI Provider Selected."
 
@@ -59,11 +74,27 @@ class AIEngine:
 
         )
 
-        return self.provider.generate(
+        try:
+
+            return provider.generate(
 
             final_prompt
 
-        )
+            )
+
+        except Exception:
+
+            if self.provider_manager.failover():
+
+                    provider = self.provider_manager.current()
+
+                    return provider.generate(
+
+                        final_prompt
+
+                    )
+
+            raise
 
     # ==================================================
     # Streaming Response
@@ -79,7 +110,9 @@ class AIEngine:
 
     ):
 
-        if self.provider is None:
+        provider = self.provider_manager.current()
+
+        if provider is None:
 
             yield "No AI Provider Selected."
 
@@ -93,11 +126,45 @@ class AIEngine:
 
         )
 
-        yield from self.provider.stream(
+        if hasattr(
 
-            final_prompt
+            provider,
 
-        )
+            "stream"
+
+        ):
+
+            try:
+
+                yield from provider.stream(
+
+                    final_prompt
+
+                )
+
+            except Exception:
+
+                if self.provider_manager.failover():
+
+                    provider = self.provider_manager.current()
+
+                    yield from provider.stream(
+
+                            final_prompt
+
+                    )
+
+                else:
+
+                    raise
+                        
+        else:
+
+            yield provider.generate(
+
+                final_prompt
+
+            )
 
     # ==================================================
     # Context
@@ -121,7 +188,7 @@ class AIEngine:
 
     ):
 
-        return self.provider
+        return self.provider_manager.current()
 
     # --------------------------------------------------
 
@@ -131,8 +198,20 @@ class AIEngine:
 
     ):
 
-        if self.provider:
+        provider = self.provider_manager.current()
 
-            return self.provider.get_name()
+        if provider:
+
+            return provider.get_name()
 
         return "None"
+
+    # --------------------------------------------------
+
+    def get_provider_manager(
+
+        self
+
+    ):
+
+        return self.provider_manager

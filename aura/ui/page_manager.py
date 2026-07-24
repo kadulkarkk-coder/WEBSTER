@@ -18,11 +18,17 @@ class PageManager:
         self.pages[name] = page
 
         page.grid(
+
             row=1,
+
             column=1,
+
             sticky="nsew",
-            padx=10,
-            pady=10
+
+            padx=(0, 15),
+
+            pady=(0, 15)
+
         )
 
         page.grid_remove()
