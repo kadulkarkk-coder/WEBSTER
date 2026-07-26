@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WEBSTER Dashboard</title>
+    <link rel="stylesheet" href="/static/css/dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="glass-bg"></div>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="logo">
+                <div class="logo-icon">🕷️</div>
+                <div class="logo-text">
+                    <h2>WEBSTER</h2>
+                    <span>v0.1.0</span>
+                </div>
+            <nav>
+                <a href="#" class="nav-item active" data-page="overview">
+                    <span class="nav-icon">🏠</span> Overview
+                </a>
+                <a href="#" class="nav-item" data-page="chat">
+                    <span class="nav-icon">💬</span> Chat Logs
+                </a>
+                <a href="#" class="nav-item" data-page="memory">
+                    <span class="nav-icon">🧠</span> Memory
+                </a>
+                <a href="#" class="nav-item" data-page="study">
+                    <span class="nav-icon">📚</span> Study Hub
+                </a>
+                <a href="#" class="nav-item" data-page="automation">
+                    <span class="nav-icon">⚡</span> Automation
+                </a>
+                <a href="#" class="nav-item" data-page="plugins">
+                    <span class="nav-icon">🔌</span> Plugins
+                </a>
+                <a href="#" class="nav-item" data-page="settings">
+                    <span class="nav-icon">⚙️</span> Settings
+                </a>
+            </nav>
+            <div class="sidebar-status">
+                <div class="status-indicator online"></div>
+                <span>Spidey Online</span>
+            </div>
+        </aside>
+        <main class="main-content">
+            <header class="topbar">
+                <h1 id="page-title">Overview</h1>
+                <div class="topbar-actions">
+                    <div class="search-box">
+                        <input type="text" placeholder="Search...">
+                        <span>🔍</span>
+                    </div>
+                    <button class="btn-icon" onclick="toggleTheme()">🌓</button>
+                </div>
+            </header>
+            <div id="page-content">
+                <!-- Overview Page -->
+                <div class="page active" id="page-overview">
+                    <div class="stats-grid">
+                        <div class="stat-card glass">
+                            <div class="stat-icon">💬</div>
+                            <div class="stat-info">
+                                <h3 id="stat-messages">0</h3>
+                                <p>Conversations</p>
+                            </div>
+                        <div class="stat-card glass">
+                            <div class="stat-icon">🧠</div>
+                            <div class="stat-info">
+                                <h3 id="stat-memory">0</h3>
+                                <p>Memory Items</p>
+                            </div>
+                        <div class="stat-card glass">
+                            <div class="stat-icon">📚</div>
+                            <div class="stat-info">
+                                <h3 id="stat-study">0</h3>
+                                <p>Study Items</p>
+                            </div>
+                        <div class="stat-card glass">
+                            <div class="stat-icon">⚡</div>
+                            <div class="stat-info">
+                                <h3 id="stat-automation">0</h3>
+                                <p>Automations</p>
+                            </div>
+                    </div>
+                    <div class="cards-row">
+                        <div class="card glass wide">
+                            <h3>🕷️ Spidey Status</h3>
+                            <div class="status-row">
+                                <span class="label">Status:</span>
+                                <span class="value online">Online</span>
+                            </div>
+                            <div class="status-row">
+                                <span class="label">AI Provider:</span>
+                                <span class="value" id="provider-status">Gemini</span>
+                            </div>
+                            <div class="status-row">
+                                <span class="label">Memory:</span>
+                                <span class="value active">Active</span>
+                            </div>
+                            <div class="status-row">
+                                <span class="label">Wake Word:</span>
+                                <span class="value">"Hey Spidey"</span>
+                            </div>
+                        <div class="card glass wide">
+                            <h3>⚡ Quick Actions</h3>
+                            <div class="quick-actions">
+                                <button class="qa-btn" onclick="sendCmd('open browser')">🌐 Open Browser</button>
+                                <button class="qa-btn" onclick="sendCmd('take note')">📝 Quick Note</button>
+                                <button class="qa-btn" onclick="sendCmd('study mode')">📚 Study Mode</button>
+                                <button class="qa-btn" onclick="sendCmd('system status')">📊 System Status</button>
+                            </div>
+                    </div>
+                    <div class="card glass">
+                        <h3>📊 System Metrics</h3>
+                        <div class="metrics-grid">
+                            <div class="metric">
+                                <div class="metric-bar cpu" style="width: 45%"></div>
+                                <span>CPU: 45%</span>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-bar memory" style="width: 62%"></div>
+                                <span>Memory: 62%</span>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-bar disk" style="width: 78%"></div>
+                                <span>Disk: 78%</span>
+                            </div>
+                    </div>
+            </div>
+        </main>
+    </div>
+    <script src="/static/js/dashboard.js"></script>
+</body>
+</html>

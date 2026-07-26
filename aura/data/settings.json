@@ -1,9 +1,0 @@
-{
-    "theme": "dark",
-    "provider": "gemini",
-    "voice": false,
-    "window": {
-        "width": 1280,
-        "height": 720
-    }
-}

@@ -1,0 +1,1 @@
+"""WEBSTER desktop widgets."""

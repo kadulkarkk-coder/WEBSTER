@@ -1,0 +1,1 @@
+"""Spidey floating orb overlay."""

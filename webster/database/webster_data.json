@@ -1,0 +1,66 @@
+{
+  "kv_store": {},
+  "notes": [],
+  "tasks": [],
+  "reminders": [],
+  "flashcards": [
+    {
+      "id": 1,
+      "front": "Q: What is Python?",
+      "back": "A: A programming language",
+      "category": "programming",
+      "difficulty": 3,
+      "reviewed_count": 0,
+      "last_reviewed": null,
+      "created_at": "2026-07-26T17:22:54.043457"
+    },
+    {
+      "id": 2,
+      "front": "Q: What is Python?",
+      "back": "A: A programming language",
+      "category": "programming",
+      "difficulty": 3,
+      "reviewed_count": 0,
+      "last_reviewed": null,
+      "created_at": "2026-07-26T17:23:29.246180"
+    },
+    {
+      "id": 3,
+      "front": "Q: What is Python?",
+      "back": "A: A programming language",
+      "category": "programming",
+      "difficulty": 3,
+      "reviewed_count": 0,
+      "last_reviewed": null,
+      "created_at": "2026-07-26T17:26:34.709153"
+    },
+    {
+      "id": 4,
+      "front": "Q: What is Python?",
+      "back": "A: A programming language",
+      "category": "programming",
+      "difficulty": 3,
+      "reviewed_count": 0,
+      "last_reviewed": null,
+      "created_at": "2026-07-26T17:27:12.145340"
+    },
+    {
+      "id": 5,
+      "front": "Q: What is Python?",
+      "back": "A: A programming language",
+      "category": "programming",
+      "difficulty": 3,
+      "reviewed_count": 0,
+      "last_reviewed": null,
+      "created_at": "2026-07-26T17:52:54.344533"
+    }
+  ],
+  "calendar_events": [],
+  "_next_id": {
+    "notes": 1,
+    "tasks": 1,
+    "reminders": 1,
+    "flashcards": 6,
+    "calendar_events": 1
+  }
+}

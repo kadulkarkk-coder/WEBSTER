@@ -1,0 +1,76 @@
+{
+  "conversations": {
+    "21bbee0a-2dd4-41d0-bc85-658df45aee74": [
+      {
+        "role": "user",
+        "content": "Hello Spidey",
+        "timestamp": "2026-07-26T17:13:57.408925"
+      },
+      {
+        "role": "assistant",
+        "content": "Hi there! How can I help?",
+        "timestamp": "2026-07-26T17:13:57.409940"
+      },
+      {
+        "role": "user",
+        "content": "Hello Spidey",
+        "timestamp": "2026-07-26T17:22:54.038743"
+      },
+      {
+        "role": "assistant",
+        "content": "Hi there! How can I help?",
+        "timestamp": "2026-07-26T17:22:54.039881"
+      },
+      {
+        "role": "user",
+        "content": "Hello Spidey",
+        "timestamp": "2026-07-26T17:23:29.213870"
+      },
+      {
+        "role": "assistant",
+        "content": "Hi there! How can I help?",
+        "timestamp": "2026-07-26T17:23:29.218218"
+      },
+      {
+        "role": "user",
+        "content": "Hello Spidey",
+        "timestamp": "2026-07-26T17:26:34.701425"
+      },
+      {
+        "role": "assistant",
+        "content": "Hi there! How can I help?",
+        "timestamp": "2026-07-26T17:26:34.703232"
+      },
+      {
+        "role": "user",
+        "content": "Hello Spidey",
+        "timestamp": "2026-07-26T17:27:12.135896"
+      },
+      {
+        "role": "assistant",
+        "content": "Hi there! How can I help?",
+        "timestamp": "2026-07-26T17:27:12.138134"
+      },
+      {
+        "role": "user",
+        "content": "hi",
+        "timestamp": "2026-07-26T17:46:38.108812"
+      },
+      {
+        "role": "assistant",
+        "content": "I'm not sure how to handle that yet. (No module for chat)",
+        "timestamp": "2026-07-26T17:46:38.112400"
+      },
+      {
+        "role": "user",
+        "content": "Hello Spidey",
+        "timestamp": "2026-07-26T17:52:54.340352"
+      },
+      {
+        "role": "assistant",
+        "content": "Hi there! How can I help?",
+        "timestamp": "2026-07-26T17:52:54.341404"
+      }
+    ]
+  }
+}

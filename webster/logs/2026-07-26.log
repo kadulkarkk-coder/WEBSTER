@@ -1,0 +1,165 @@
+2026-07-26 17:02:03 | INFO     | MEMORY          | Memory manager initialized
+2026-07-26 17:02:03 | INFO     | HELVAC          | HELVAC engine initialized
+2026-07-26 17:02:03 | INFO     | SPIDEY          | Spidey assistant initialized
+2026-07-26 17:02:03 | INFO     | SCHEDULER       | Scheduler initialized
+2026-07-26 17:02:03 | INFO     | SPIDEY          | Spidey activated (conv: 23813690)
+2026-07-26 17:13:57 | INFO     | MEMORY          | Memory manager initialized
+2026-07-26 17:13:57 | INFO     | HELVAC          | HELVAC engine initialized
+2026-07-26 17:13:57 | INFO     | SPIDEY          | Spidey assistant initialized
+2026-07-26 17:13:57 | INFO     | SCHEDULER       | Scheduler initialized
+2026-07-26 17:13:57 | INFO     | ROUTER          | Request router initialized
+2026-07-26 17:13:57 | WARNING  | STT             | No speech recognition available
+2026-07-26 17:13:57 | WARNING  | TTS             | No TTS available
+2026-07-26 17:13:57 | INFO     | WAKE_WORD       | Vosk not available, using simple keyword detection
+2026-07-26 17:13:57 | INFO     | VOICE_CTRL      | Voice controller initialized
+2026-07-26 17:13:57 | INFO     | SPIDEY          | Spidey activated (conv: bb063b2e)
+2026-07-26 17:13:57 | DEBUG    | HELVAC          | Module registered: ai
+2026-07-26 17:13:57 | DEBUG    | HELVAC          | Module registered: study
+2026-07-26 17:13:57 | DEBUG    | HELVAC          | Module registered: voice
+2026-07-26 17:13:57 | DEBUG    | ROUTER          | Routed to study (confidence: 0.66)
+2026-07-26 17:13:57 | DEBUG    | ROUTER          | Routed to automation (confidence: 0.43)
+2026-07-26 17:13:57 | DEBUG    | ROUTER          | Routed to ai (confidence: 0.30)
+2026-07-26 17:13:57 | DEBUG    | SCHEDULER       | Scheduled one-time: test in 1s [ID: a3dfd03d]
+2026-07-26 17:22:49 | DEBUG    | MEMORY          | Loaded 1 conversations
+2026-07-26 17:22:49 | INFO     | MEMORY          | Memory manager initialized
+2026-07-26 17:22:49 | INFO     | HELVAC          | HELVAC engine initialized
+2026-07-26 17:22:49 | INFO     | SPIDEY          | Spidey assistant initialized
+2026-07-26 17:22:49 | INFO     | SCHEDULER       | Scheduler initialized
+2026-07-26 17:22:49 | INFO     | ROUTER          | Request router initialized
+2026-07-26 17:22:49 | INFO     | STT             | SpeechRecognition loaded
+2026-07-26 17:22:52 | INFO     | TTS             | pyttsx3 loaded
+2026-07-26 17:22:54 | INFO     | VOICE_CTRL      | Voice controller initialized
+2026-07-26 17:22:54 | INFO     | SPIDEY          | Spidey activated (conv: e5966743)
+2026-07-26 17:22:54 | DEBUG    | HELVAC          | Module registered: ai
+2026-07-26 17:22:54 | DEBUG    | HELVAC          | Module registered: study
+2026-07-26 17:22:54 | DEBUG    | HELVAC          | Module registered: voice
+2026-07-26 17:22:54 | DEBUG    | ROUTER          | Routed to study (confidence: 0.66)
+2026-07-26 17:22:54 | DEBUG    | ROUTER          | Routed to automation (confidence: 0.43)
+2026-07-26 17:22:54 | DEBUG    | ROUTER          | Routed to ai (confidence: 0.30)
+2026-07-26 17:22:54 | DEBUG    | SCHEDULER       | Scheduled one-time: test in 1s [ID: f2a6523b]
+2026-07-26 17:22:54 | INFO     | VOICE_CTRL      | Voice enabled
+2026-07-26 17:22:54 | INFO     | VOICE_CTRL      | Voice disabled
+2026-07-26 17:22:54 | INFO     | NOTES           | Created note: Test Note [ID: 1]
+2026-07-26 17:23:24 | DEBUG    | MEMORY          | Loaded 1 conversations
+2026-07-26 17:23:24 | INFO     | MEMORY          | Memory manager initialized
+2026-07-26 17:23:24 | INFO     | HELVAC          | HELVAC engine initialized
+2026-07-26 17:23:24 | INFO     | SPIDEY          | Spidey assistant initialized
+2026-07-26 17:23:24 | INFO     | SCHEDULER       | Scheduler initialized
+2026-07-26 17:23:24 | INFO     | ROUTER          | Request router initialized
+2026-07-26 17:23:25 | INFO     | STT             | SpeechRecognition loaded
+2026-07-26 17:23:28 | INFO     | TTS             | pyttsx3 loaded
+2026-07-26 17:23:29 | INFO     | VOICE_CTRL      | Voice controller initialized
+2026-07-26 17:23:29 | INFO     | SPIDEY          | Spidey activated (conv: a77cf7d9)
+2026-07-26 17:23:29 | DEBUG    | HELVAC          | Module registered: ai
+2026-07-26 17:23:29 | DEBUG    | HELVAC          | Module registered: study
+2026-07-26 17:23:29 | DEBUG    | HELVAC          | Module registered: voice
+2026-07-26 17:23:29 | DEBUG    | ROUTER          | Routed to study (confidence: 0.66)
+2026-07-26 17:23:29 | DEBUG    | ROUTER          | Routed to automation (confidence: 0.43)
+2026-07-26 17:23:29 | DEBUG    | ROUTER          | Routed to ai (confidence: 0.30)
+2026-07-26 17:23:29 | DEBUG    | SCHEDULER       | Scheduled one-time: test in 1s [ID: de7b17b6]
+2026-07-26 17:23:29 | INFO     | VOICE_CTRL      | Voice enabled
+2026-07-26 17:23:29 | INFO     | VOICE_CTRL      | Voice disabled
+2026-07-26 17:23:29 | INFO     | NOTES           | Created note: Test Note [ID: 1]
+2026-07-26 17:26:33 | DEBUG    | MEMORY          | Loaded 1 conversations
+2026-07-26 17:26:33 | INFO     | MEMORY          | Memory manager initialized
+2026-07-26 17:26:33 | INFO     | HELVAC          | HELVAC engine initialized
+2026-07-26 17:26:33 | INFO     | SPIDEY          | Spidey assistant initialized
+2026-07-26 17:26:33 | INFO     | SCHEDULER       | Scheduler initialized
+2026-07-26 17:26:33 | INFO     | ROUTER          | Request router initialized
+2026-07-26 17:26:33 | INFO     | STT             | SpeechRecognition loaded
+2026-07-26 17:26:33 | INFO     | TTS             | pyttsx3 loaded
+2026-07-26 17:26:34 | INFO     | VOICE_CTRL      | Voice controller initialized
+2026-07-26 17:26:34 | INFO     | SPIDEY          | Spidey activated (conv: 4d7cc05f)
+2026-07-26 17:26:34 | DEBUG    | HELVAC          | Module registered: ai
+2026-07-26 17:26:34 | DEBUG    | HELVAC          | Module registered: study
+2026-07-26 17:26:34 | DEBUG    | HELVAC          | Module registered: voice
+2026-07-26 17:26:34 | DEBUG    | ROUTER          | Routed to study (confidence: 0.66)
+2026-07-26 17:26:34 | DEBUG    | ROUTER          | Routed to automation (confidence: 0.43)
+2026-07-26 17:26:34 | DEBUG    | ROUTER          | Routed to ai (confidence: 0.30)
+2026-07-26 17:26:34 | DEBUG    | SCHEDULER       | Scheduled one-time: test in 1s [ID: e80dbf5f]
+2026-07-26 17:26:34 | INFO     | VOICE_CTRL      | Voice enabled
+2026-07-26 17:26:34 | INFO     | VOICE_CTRL      | Voice disabled
+2026-07-26 17:26:34 | INFO     | NOTES           | Created note: Test Note [ID: 1]
+2026-07-26 17:27:11 | DEBUG    | MEMORY          | Loaded 1 conversations
+2026-07-26 17:27:11 | INFO     | MEMORY          | Memory manager initialized
+2026-07-26 17:27:11 | INFO     | HELVAC          | HELVAC engine initialized
+2026-07-26 17:27:11 | INFO     | SPIDEY          | Spidey assistant initialized
+2026-07-26 17:27:11 | INFO     | SCHEDULER       | Scheduler initialized
+2026-07-26 17:27:11 | INFO     | ROUTER          | Request router initialized
+2026-07-26 17:27:11 | INFO     | STT             | SpeechRecognition loaded
+2026-07-26 17:27:11 | INFO     | TTS             | pyttsx3 loaded
+2026-07-26 17:27:12 | INFO     | VOICE_CTRL      | Voice controller initialized
+2026-07-26 17:27:12 | INFO     | SPIDEY          | Spidey activated (conv: f19c3956)
+2026-07-26 17:27:12 | DEBUG    | HELVAC          | Module registered: ai
+2026-07-26 17:27:12 | DEBUG    | HELVAC          | Module registered: study
+2026-07-26 17:27:12 | DEBUG    | HELVAC          | Module registered: voice
+2026-07-26 17:27:12 | DEBUG    | ROUTER          | Routed to study (confidence: 0.66)
+2026-07-26 17:27:12 | DEBUG    | ROUTER          | Routed to automation (confidence: 0.43)
+2026-07-26 17:27:12 | DEBUG    | ROUTER          | Routed to ai (confidence: 0.30)
+2026-07-26 17:27:12 | DEBUG    | SCHEDULER       | Scheduled one-time: test in 1s [ID: df9b6140]
+2026-07-26 17:27:12 | INFO     | VOICE_CTRL      | Voice enabled
+2026-07-26 17:27:12 | INFO     | VOICE_CTRL      | Voice disabled
+2026-07-26 17:27:12 | INFO     | NOTES           | Created note: Test Note [ID: 1]
+2026-07-26 17:43:37 | DEBUG    | MEMORY          | Loaded 1 conversations
+2026-07-26 17:43:37 | INFO     | MEMORY          | Memory manager initialized
+2026-07-26 17:43:37 | INFO     | HELVAC          | HELVAC engine initialized
+2026-07-26 17:43:37 | INFO     | SPIDEY          | Spidey assistant initialized
+2026-07-26 17:43:37 | INFO     | SPIDEY          | Spidey activated (conv: 0b633fd3)
+2026-07-26 17:44:53 | DEBUG    | MEMORY          | Loaded 1 conversations
+2026-07-26 17:44:53 | INFO     | MEMORY          | Memory manager initialized
+2026-07-26 17:44:53 | INFO     | HELVAC          | HELVAC engine initialized
+2026-07-26 17:44:53 | INFO     | SPIDEY          | Spidey assistant initialized
+2026-07-26 17:44:53 | INFO     | SPIDEY          | Spidey activated (conv: 93feec75)
+2026-07-26 17:46:27 | DEBUG    | MEMORY          | Loaded 1 conversations
+2026-07-26 17:46:27 | INFO     | MEMORY          | Memory manager initialized
+2026-07-26 17:46:27 | INFO     | HELVAC          | HELVAC engine initialized
+2026-07-26 17:46:27 | INFO     | SPIDEY          | Spidey assistant initialized
+2026-07-26 17:46:27 | INFO     | SPIDEY          | Spidey activated (conv: 95017ba4)
+2026-07-26 17:46:38 | DEBUG    | HELVAC          | Task queued: 18da8525-7811-4300-8ff7-aba36f6f44da (chat)
+2026-07-26 17:46:38 | DEBUG    | HELVAC          | Processing task: 18da8525-7811-4300-8ff7-aba36f6f44da (chat)
+2026-07-26 17:46:38 | INFO     | HELVAC          | HELVAC worker started
+2026-07-26 17:51:27 | DEBUG    | MEMORY          | Loaded 1 conversations
+2026-07-26 17:51:27 | INFO     | MEMORY          | Memory manager initialized
+2026-07-26 17:51:27 | INFO     | HELVAC          | HELVAC engine initialized
+2026-07-26 17:51:27 | INFO     | SPIDEY          | Spidey assistant initialized
+2026-07-26 17:51:27 | INFO     | SCHEDULER       | Scheduler initialized
+2026-07-26 17:51:27 | INFO     | ROUTER          | Request router initialized
+2026-07-26 17:52:54 | DEBUG    | MEMORY          | Loaded 1 conversations
+2026-07-26 17:52:54 | INFO     | MEMORY          | Memory manager initialized
+2026-07-26 17:52:54 | INFO     | HELVAC          | HELVAC engine initialized
+2026-07-26 17:52:54 | INFO     | SPIDEY          | Spidey assistant initialized
+2026-07-26 17:52:54 | INFO     | SCHEDULER       | Scheduler initialized
+2026-07-26 17:52:54 | INFO     | ROUTER          | Request router initialized
+2026-07-26 17:52:54 | INFO     | WAKE_WORD       | Vosk not available, using simple keyword detection
+2026-07-26 17:52:54 | INFO     | VOICE_CTRL      | Voice controller initialized
+2026-07-26 17:52:54 | INFO     | SPIDEY          | Spidey activated (conv: c98e4911)
+2026-07-26 17:52:54 | DEBUG    | HELVAC          | Module registered: ai
+2026-07-26 17:52:54 | DEBUG    | HELVAC          | Module registered: study
+2026-07-26 17:52:54 | DEBUG    | HELVAC          | Module registered: voice
+2026-07-26 17:52:54 | DEBUG    | ROUTER          | Routed to study (confidence: 0.66)
+2026-07-26 17:52:54 | DEBUG    | ROUTER          | Routed to automation (confidence: 0.43)
+2026-07-26 17:52:54 | DEBUG    | ROUTER          | Routed to ai (confidence: 0.30)
+2026-07-26 17:52:54 | DEBUG    | SCHEDULER       | Scheduled one-time: test in 1s [ID: ac34a329]
+2026-07-26 17:52:54 | INFO     | VOICE_CTRL      | Voice enabled
+2026-07-26 17:52:54 | INFO     | VOICE_CTRL      | Voice disabled
+2026-07-26 17:52:54 | INFO     | NOTES           | Created note: Test Note [ID: 1]
+2026-07-26 17:53:07 | DEBUG    | MEMORY          | Loaded 1 conversations
+2026-07-26 17:53:07 | INFO     | MEMORY          | Memory manager initialized
+2026-07-26 17:53:07 | INFO     | HELVAC          | HELVAC engine initialized
+2026-07-26 17:53:07 | INFO     | SPIDEY          | Spidey assistant initialized
+2026-07-26 17:53:07 | INFO     | SPIDEY          | Spidey activated (conv: cb5f3906)
+2026-07-26 17:53:10 | DEBUG    | SPIDEY          | UI callback registered
+2026-07-26 17:53:18 | INFO     | SPIDEY          | Spidey deactivated
+2026-07-26 17:53:18 | INFO     | SPIDEY          | Spidey shut down
+2026-07-26 17:57:40 | DEBUG    | MEMORY          | Loaded 1 conversations
+2026-07-26 17:57:40 | INFO     | MEMORY          | Memory manager initialized
+2026-07-26 17:57:40 | INFO     | HELVAC          | HELVAC engine initialized
+2026-07-26 17:57:40 | INFO     | SPIDEY          | Spidey assistant initialized
+2026-07-26 17:57:40 | INFO     | SCHEDULER       | Scheduler initialized
+2026-07-26 17:57:40 | INFO     | ROUTER          | Request router initialized
+2026-07-26 17:57:40 | INFO     | WAKE_WORD       | Vosk not available, using simple keyword detection
+2026-07-26 17:57:40 | INFO     | VOICE_CTRL      | Voice controller initialized
+2026-07-26 17:57:40 | INFO     | SPIDEY          | Spidey activated (conv: 403bb728)
+2026-07-26 17:57:40 | DEBUG    | HELVAC          | Module registered: ai
+2026-07-26 17:57:40 | DEBUG    | HELVAC          | Module registered: study
+2026-07-26 17:57:40 | DEBUG    | HELVAC          | Module registered: voice
